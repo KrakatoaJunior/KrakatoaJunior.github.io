@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Anthony Warsah Liu</h1>
+            <p>
+                <a href="https://github.com/KrakatoaJunior" target="_blank" class="GreenLink">GitHub</a> |
+                <a href="https://www.linkedin.com/in/anthonywarsahliu/" target="_blank" class="GreenLink">LinkedIn</a> |
+                anthonywarsahliu@gmail.com
+            </p>
+        </header>
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> &raquo; 
+            <span>World Health Index analysis</span>
+        </nav>
+        <main style="text-align: left;">
+          <h2>World Health Index Analysis</h2>
+            <p><a href="https://www.kaggle.com/datasets/agrafintech/world-happiness-index-and-inflation-dataset" target="_blank" class="GreenLink"> Kaggle source link</a> |
+              <a href="files/WHI_analysis.R" download class="GreenLink">Download R Script</a> |
+              <a href="files/WHI_Inflation.R" download class="GreenLink">Download CSV file</a>
+            </p>
+
+            <h3>The data</h3>
+              <p>A school project analyzing a toy dataset from Kaggle consisting of 16 variables:</p>
+              <ol>
+                <li>Country</li>
+                <li>Year</li>
+                <li>Headline Consumer Price Inflation</li>
+                <li>Energy Consumer Price Inflation</li>
+                <li>Food Consumer Price Inflation</li>
+                <li>Official Core Consumer Price Inflation</li>
+                <li>Producer Price Inflation</li>
+                <li>GDP deflator index growth rate</li>
+                <li>Continent/Region</li>
+                <li>Score</li>
+                <li>GDP per capita</li>
+                <li>Social support</li>
+                <li>Healthy life expectancy at birth</li>
+                <li>Freedom to make life choices</li>
+                <li>Generosity</li>
+                <li>Perceptions of corruption</li>
+              </ol>
+              <p>After the csv file is downloaded and put into RStudio, my team wished to test all the columns for significance in regards to score (World Happiness Index score), we could do this using multiple linear regression.</p>
+            
+            <h3>Significant variables</h3>
+              <p>With this intent, we first looked at the missing-ness of each column:</p>
+              <p>colSums(is.na(df)) / nrow(df) * 100 </p>
+              <img src="missingness_of_each_column.png">
+              <p>And removed those columns that have a significant amount of N/A values. We identified 2 such columns; Official Core Consumer Price Inflation and Producer Price Inflation.</p>
+              <p>df <- df %>% select(-`Official Core Consumer Price Inflation`) %>% select(-`Producer Price Inflation`)</p>
+              <p>Before doing multiple linear regression, we removed Country and Continent/Region to reduce the amount of dummy binary variables. This adds an assumption that countries and continents/regions does not affect the happiness score, a reasonable assumption we felt - but thinking back on it now, certain countries <em>do</em> have branding and inherent bias to its name. The United States' American dream, for example, or the stigma against countries in the African continent, or the European Union's relatively high standard of living, etcetera.</p>
+              <p>After running multiple linear regression we have discovered these variables are significant:</p>
+              <ol>
+                <li value="2">Year</li>
+                <li value="4">Energy Consumer Price Inflation</li>
+                <li value="11">GDP per Capita</li>
+                <li value="12">Social support</li>
+                <li value="13">Healthy life expectancy at birth</li>
+                <li value="14">Freedom to make life choices</li>
+                <li value="15">Generosity</li>
+                <li value="16">Perceptions of corruption</li>
+              </ol>
+            
+            <h3>Imputation</h3>
+              <p>After finding out the significant columns, we need to decide how to handle all the missing values. The team agreed we should do imputation, however, with no way to know the relationship between the missing and recorded data (as we are not part of the collection process), predictive mean matching (PMM) imputation was brought up as a method. I argued that the best practice was stochastic regression by country.
+              <p>In short, we faced two choices at this point in time:</p>
+              <ol>
+                <li> Global PMM imputation - less work, less accurate imputation variance</li>
+                <li>by Country stochastic linear regression imputation - more work, more accurate imputation variance</li>
+              </ol>
+              <p>It was a big disagreement - I tried stochastic linear regression but could not make it work, I worried there wasn't enough data for some countries which only filled in some categories(columns) and/or years, my solution was to take those countries out, which was disagreed on by the team again. At an impasse, there was a need for an arbitrator, so we emailed the professor for guidance</p>
+              <img src="email_correspondence_redacted.png">
+              <p>With this advice, it was clear that we should just go ahead with stochastic regression imputation on the countries regardless that some of them had missing years and/or columns. During the school project, out of time and skill, we had gone against this directive and used a global blanket predictive mean method (PMM) of imputation, but now, I will attempt to fill in missing years with blank rows and attempt to fill them out with imputation per country.</p>  
+              
+        </main>
+    </body>
+</html>
