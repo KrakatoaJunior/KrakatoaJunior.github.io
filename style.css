@@ -6,7 +6,7 @@ body {
     color: #333;
 }
 header {
-    background-image: url('LandsEndSF_LakeChabot_LandsEndSF.jpg');
+    background-image: url('media/LandsEndSF_LakeChabot_LandsEndSF.jpg');
     background-size: 100% 100%;
     background-position: 100% 100%;
     color: white;
@@ -55,7 +55,7 @@ footer {
     padding: 1rem;
     font-size: 0.9rem;
 }
-.GreenLink { /*Change link colour, remove default underline*/
+.GreenLink {
     color: #66a54d;
     text-decoration: none;
 }
@@ -73,38 +73,34 @@ footer {
 }
 
 .link-card {
-    display: inline-block;           /* makes padding/borders behave well */
-    border: 2px solid #ffffff;        /* border color */
-    border-radius: 12px;              /* rounded corners */
-    text-decoration: none;            /* remove link underline */
-    color: #0b66c3;                   /* text color */
-    transition: transform 0.15s ease, /* smooth grow */
+    display: inline-block;
+    border: 2px solid #ffffff;        
+    border-radius: 12px;              
+    text-decoration: none;
+    color: #0b66c3;                   
+    transition: transform 0.15s ease, 
                 box-shadow 0.15s ease;
 }
 
 .link-card:hover {
-    transform: scale(1.05);           /* grow slightly */
-    box-shadow: 0 8px 18px rgba(0,0,0,0.2); /* subtle shadow */
-    background-color: #f0f8ff;        /* optional: light background on hover */
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    background-color: #f0f8ff;
 }
-
-/* Scrollable project showcase */
 .showcase {
-    height: 70vh;                /* visible area height; adjust as you like */
-    overflow-y: auto;            /* vertical scroll inside the section */
+    height: 70vh;
+    overflow-y: auto;
     margin: 2rem 0;
-    padding: 0;                  /* remove default spacing */
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;                   /* spacing between cards */
+    gap: 14px;
 }
-
-/* Each project card is a full-width, fixed-height link */
 .showcase .card {
     display: block;
     width: 100%;
-    height: 260px;               /* static vertical height */
-    background-size: cover;      /* fill width nicely, crop if needed */
+    height: 260px;
+    background-size: cover;
     background-position: center;
     border-radius: 14px;
     position: relative;
@@ -152,7 +148,7 @@ footer {
 }
 
 .breadcrumb a {
-    color: #66a54d; /* match your theme */
+    color: #66a54d;
     text-decoration: none;
 }
 
@@ -168,8 +164,8 @@ footer {
     position:absolute;
     top: 16px;
     left: 16px;
-    right: auto;   /* reset so it's not bound to the right edge */
-    bottom: auto;  /* reset so it's not stuck to the bottom */
+    right: auto;
+    bottom: auto;
     font-weight: 700;
     color: #2c0018;
     font-size: 1.1rem;
@@ -179,4 +175,47 @@ footer {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+.card{
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;           /* or set a fixed height */
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  background: #000;             /* fallback color while loading */
+}
+
+/* make the video behave like a background image */
+.card__video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;            /* like background-size: cover */
+  pointer-events: none;         /* keep the <a> fully clickable */
+}
+
+/* subtle gradient for text readability */
+.card::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,0));
+}
+
+.card__title{
+  position: absolute;
+  left: 12px; bottom: 12px;
+  font: 600 1rem/1.1 system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+  z-index: 1;
+  color:#000;
+}
+
+/* respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce){
+  .card__video{ display:none; }
+  .card{ background-image: url("media/whi_pca_gmm.jpg"); background-size: cover; background-position:center; }
 }
