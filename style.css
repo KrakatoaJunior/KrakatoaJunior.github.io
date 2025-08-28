@@ -65,13 +65,6 @@ footer {
     text-decoration: underline;
 }
 
-.WHI_PCA_GIF {
-    background-image: url('whi_pca_gmm.gif');
-    background-size: flex;
-    background-position: 0% 0%;
-    color: white;
-}
-
 .link-card {
     display: inline-block;
     border: 2px solid #ffffff;        

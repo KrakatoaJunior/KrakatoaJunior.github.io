@@ -1,42 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <script type="module" src="year-video-slider.js"></script>
-    </head>
-    <body>
-        <header>
-            <h1>Anthony Warsah Liu</h1>
-            <p>
-                <a href="https://github.com/KrakatoaJunior" target="_blank" class="GreenLink">GitHub</a> |
-                <a href="https://www.linkedin.com/in/anthonywarsahliu/" target="_blank" class="GreenLink">LinkedIn</a> |
-                anthonywarsahliu@gmail.com
-            </p>
-        </header>
-        <nav class="breadcrumb">
-            <a href="index.html">Home</a> &raquo; 
-            <span>World Health Index analysis</span>
-        </nav>
-        <main style="text-align: left;">
-          <h2>World Health Index Analysis</h2>
-          <p><a href="https://www.kaggle.com/datasets/agrafintech/world-happiness-index-and-inflation-dataset" target="_blank" class="GreenLink"> Kaggle source link</a> |
-            <a href="files/WHI_analysis2.R" download class="GreenLink">Download R Script</a> |
-            <a href="files/WHI_Inflation.csv" download class="GreenLink">Download CSV file</a>
-          </p>
-          <year-video-slider
-            src="/media/whi_pca_gmm.mp4"
-            start="2015"
-            end="2023"
-            state-length="1"
-            transition-length="4"
-            fps="60"
-            nframes="900"
-            end-pause="0">
-          </year-video-slider>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="year-video-slider.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Anthony Warsah Liu</h1>
+      <p>
+        <a href="https://github.com/KrakatoaJunior" target="_blank" class="GreenLink">GitHub</a> |
+        <a href="https://www.linkedin.com/in/anthonywarsahliu/" target="_blank" class="GreenLink">LinkedIn</a> |
+        anthonywarsahliu@gmail.com
+      </p>
+    </header>
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a> &raquo; 
+      <span>World Health Index analysis</span>
+    </nav>
+    <main style="text-align: left;">
+      <h2>World Health Index Analysis</h2>
+      <p>
+        <a href="https://www.kaggle.com/datasets/agrafintech/world-happiness-index-and-inflation-dataset" target="_blank" class="GreenLink"> Kaggle source link</a> |
+        <a href="files/WHI_analysis2.R" download class="GreenLink">Download R Script</a> |
+        <a href="files/WHI_Inflation.csv" download class="GreenLink">Download CSV file</a>
+      </p>
+      <year-video-slider
+        src="/media/whi_pca_gmm.mp4"
+        start="2015"
+        end="2023"
+        state-length="1"
+        transition-length="4"
+        fps="60"
+        nframes="900"
+        end-pause="0">
+      </year-video-slider>
+      <u>Note</u>:
+      <ol>
+        <li> Djibouti, Maldives, Oman, Puerto Rico, and Suriname are not in this analysis due to grossly missing data</li>
+        <li>Country is not a variable taken into account when calculating for World Happiness Index in this analysis</li>
+        <li>Missing data is treated as Missing At Random (MAR)</li>
+      </ol>
 
-              
-        </main>
-    </body>
+      <h3>So how do i interpret this whole thing?</h3>
+      <p>
+        Score is the world happiness index and all the other loading vectors (arrows) represent their relationship to the score. A 0° angle means correlation, 90° means independence, 
+        180° means inverse correlation. So, we can say:
+      </p>
+      <ol>
+        <li> Social support, GDP per capita and healthy life expectancy at birth are almost at the same angle. We can say that any 1 unit change of either three contribute mostly the same unit of change to score.</li>
+        <li> Generosity is almost perpendicular to Score. We can say that any 1 unit of change to generosity means very little change to score.</li>
+        <li> Any 1 unit change to 'Freedom to make life choices', and 'Perceptions of corruption' also changes </li>
+      </ol>
+      <p> But wait - not only can we measure score against the other loading vectors, we can also measure loading vectors against other loading vectors! So,</p>
+      <ol>
+        <li> Generosity and Perceptions of corruption is mostly independent from Ss, GDPpC, and HLEaB - but not completely - which is pretty interesting.</li>
+        <li> Amusingly, the more Freedom to make life choices you have, the more Perceptions of corruption you also have. Quite frustrating for dictators.</li>
+      </ol>
+      
+      <h3>What is PCA?</h3>
+      <p>
+        Principle Component Analysis (PCA) is a dimensional reduction technique. In my case, I want to visualize 7 different columns:
+      </p>
+      <ol>
+        <li>Score</li>
+        <li>GDP per Capita</li>
+        <li>Social support</li>
+        <li>Healthy life expectancy at birth</li>
+        <li>Freedom to make life choices</li>
+        <li>Generosity</li>
+        <li>Perceptions of corruption</li>
+      </ol>
+      <p>Into 2 axes; so that I can do a time-series visualization on it.</p>
+      <h3>What does PC1 and PC2 actually represent?</h3>
+      <p>
+        We don't actually know what it represents.
+        Principal Components (PCs) are eigenvectors of the dataset. PC1 represents the eigenvector which explains the most variability and
+        PC2 represents the orthogonal eigenvector that explains the second-most variability.
+        We can only guess to its label looking at the various arrows contributing to the axes, and their relationships
+        as described within the rules of 2-D graphs.
+      </p>
+      <p>
+        Maybe PC1 can reasonably be called 'Socioeconomic factors', because GDP per Capita,
+        Social support, freedom to make life choices, and Healthy life expectancy at birth contributes quite a lot to PC1.
+        And maybe PC2 can be called 'Values/Societal attitudes', because Generosity, and perceptions of corruption contribute
+        mostly to PC2.
+      </p>
+      <p>
+        In this dataset's case (after stochastic linear regression, and stochastic predictive mean matching imputation)
+        we have this screechart denoting the variability of each PC:
+      </p>
+      <div style="display: flex; align-items: center;">
+        <img src="/media/WHI_screeplot.png" 
+             alt="Screeplot of PCA" 
+             style="width: 600px; margin-right: 20px;">
+        <div>
+          <h3>'explained variance'?</h3>
+          <img src="/media/portable_charger.jpg"
+               alt="portable handphone charger"
+               style="width:200px">
+          <p>
+            Imagine this portable charger is a dataset of 3 variables: length, width, and height.
+            If I want to reduce it to 2-Dimensions (like taking a photo), PCA finds the best viewing angle (projection)
+            that captures as much of the charger's shape as possible. The projection is my first 2 principal components (PC).
+            The amount of detail preserved in the photo is the explained variance, spanned by the two PCs.
+          </p>
+        </div>
+      </div>
+      <h3>What is 'imputation'?</h3>
+        <p>
+          Imputation is the process of filling in missing values in the dataset with plausible estimates,
+          while preserving the original distribution of the data, avoid systemic bias, and maintain statistical validity.
+        </p>
+          <ol>
+            <li><span style="font-weight: bold;">linear regression (LR) imputation:</span>
+              There are several countries with missing values on one or two years.
+              I took the values of their other years, take a best fit LR line of those data,
+              and put in the intersection of the missing years and that best fit line's value + noise
+              into the data frame.
+            </li>
+            <li><span style="font-weight: bold;">predictive mean matching (PMM) imputation:</span>
+              There are several countries with missing values on most or all years.
+              I took the closest observed value of the mean of similar countries (from Regions/Continents column)
+              and put that in to the countries' respective year in the data frame.
+            </li>
+          </ol>
+      <h3> Types of missing data</h3>
+      <p> This is very important in how we choose which imputation methods to apply to missing values.</p>
+      <ol>
+        <li>
+          <b>Missing Completely at Random (MCaR)</b>:
+            The least constraining one. The probability of missingness is independent of both observed and unobserved data,
+            so you can pretty much choose whichever imputation you deem best. How it happens: a lab technician accidentally
+            loses some test tubes. Oops!
+        </li>
+        <li>
+          <b>Missing at Random (MaR)</b>:
+            Missingness depends on observed data, the most common working assumption. Most imputation methods assume MAR.
+            How it happens: survey responders who are ___ will be less likely to answer ___.  
+        </li>
+        <li>
+          <b>Missing Not at Random (MNaR)</b>:
+            The most constraining one. Missingness depends on the unobserved value itself, even after accounting for other variables.
+            We would need some special imputation methods like selection models or sensitivity analysis. For example, rich people
+            are less likely to report income.
+        </li>
+      </ol>
+    </main>
+  </body>
 </html>

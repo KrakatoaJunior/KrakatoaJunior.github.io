@@ -179,6 +179,7 @@ countries_more_than_10NAs[[1]]
 
 # Countries that have ANY NAs in list form
 countries_any_NAs <- lapply(na_totals_by_country, function(df) {df %>% pull(Country)})
+countries_any_NAs[[1]]
 
 # Countries that have LESS THAN 10 NAs in list form
 countries_less_than_10NAs <- setdiff(countries_any_NAs[[1]], countries_more_than_10NAs[[1]])
@@ -301,7 +302,6 @@ load_2D$Variable <- rownames(load_2D)
 global_fit <- Mclust(scores_2D %>% dplyr::select(PC1,PC2))
 scores_2D$Cluster <- predict(global_fit, newdata = scores_2D %>% dplyr::select(PC1,PC2))$classification
 
-# ---------- OPTION A: pad a terminal 2023 state ----------
 target_year <- 2023L
 
 last_per_cty <- scores_2D %>%
@@ -321,7 +321,6 @@ scores_2D_ext$Cluster <- predict(
   global_fit,
   newdata = dplyr::select(scores_2D_ext, PC1, PC2)
 )$classification
-# ----------------------------------------------------------
 
 # ranges & arrow scaling (use extended data)
 xr <- range(scores_2D_ext$PC1, na.rm=TRUE)
@@ -458,4 +457,3 @@ gganimate::animate(
   def = ragg::agg_png(),
   renderer = gganimate::av_renderer("gmm_pca2D_yearlabel_to2023.mp4")
 )
-
