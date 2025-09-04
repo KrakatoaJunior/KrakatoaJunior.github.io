@@ -49,14 +49,24 @@
         180° means inverse correlation. So, we can say:
       </p>
       <ol>
-        <li> Social support, GDP per capita and healthy life expectancy at birth are almost at the same angle. We can say that any 1 unit change of either three contribute mostly the same unit of change to score.</li>
+        <li>
+          Social support, GDP per capita and healthy life expectancy at birth are almost at the same angle. We can say that any 1 unit change of either three
+          contribute mostly the same unit of change to score.
+        </li>
         <li> Generosity is almost perpendicular to Score. We can say that any 1 unit of change to generosity means very little change to score.</li>
-        <li> Any 1 unit change to 'Freedom to make life choices', and 'Perceptions of corruption' also changes </li>
+        <li> 
+          'Freedom to make life choices', and 'Perceptions of corruption' are 30 degrees and 45 degrees to Score, we can say that any 1 unit change to 
+          'Freedom to make life choices' changes scrore by 1/3 of a unit while a change to 'Perceptions of corruption' changes score by 1/2 a unit.
+        </li>
       </ol>
       <p> But wait - not only can we measure score against the other loading vectors, we can also measure loading vectors against other loading vectors! So,</p>
       <ol>
         <li> Generosity and Perceptions of corruption is mostly independent from Ss, GDPpC, and HLEaB - but not completely - which is pretty interesting.</li>
         <li> Amusingly, the more Freedom to make life choices you have, the more Perceptions of corruption you also have. Quite frustrating for dictators.</li>
+      </ol>
+      <p> Furthermore, as a time-series visualization, we might be able to see the effects of global trends.</p>
+      <ol>
+        <li> The most obvious has to be the period between 2019 and 2021 - where the Sars-Coronavirus 2 pandemic lowered the global average score briefly.</li>
       </ol>
       
       <h3>What is PCA?</h3>
@@ -72,20 +82,18 @@
         <li>Generosity</li>
         <li>Perceptions of corruption</li>
       </ol>
-      <p>Into 2 axes; so that I can do a time-series visualization on it.</p>
+      <p>Into 2 axes; so that I can do a 2-dimensional time-series visualization on it.</p>
       <h3>What does PC1 and PC2 actually represent?</h3>
       <p>
-        We don't actually know what it represents.
-        Principal Components (PCs) are eigenvectors of the dataset. PC1 represents the eigenvector which explains the most variability and
-        PC2 represents the orthogonal eigenvector that explains the second-most variability.
-        We can only guess to its label looking at the various arrows contributing to the axes, and their relationships
+        We don't actually know what it represents. Maybe PC1 can reasonably be called 'Socioeconomic factors', because GDP per Capita,
+        Social support, freedom to make life choices, and Healthy life expectancy at birth contributes quite a lot to PC1.
+        And maybe PC2 can be called 'Values/Societal attitudes', because Generosity, and perceptions of corruption contribute
+        mostly to PC2. We can only guess to its label looking at the various arrows contributing to the axes, and their relationships
         as described within the rules of 2-D graphs.
       </p>
       <p>
-        Maybe PC1 can reasonably be called 'Socioeconomic factors', because GDP per Capita,
-        Social support, freedom to make life choices, and Healthy life expectancy at birth contributes quite a lot to PC1.
-        And maybe PC2 can be called 'Values/Societal attitudes', because Generosity, and perceptions of corruption contribute
-        mostly to PC2.
+        As for what PCs are, they are eigenvectors of the dataset. PC1 represents the eigenvector which explains the most variability and
+        PC2 represents the orthogonal eigenvector that explains the second-most variability. The respective eigenvalues are the variances.
       </p>
       <p>
         In this dataset's case (after stochastic linear regression, and stochastic predictive mean matching imputation)
