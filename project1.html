@@ -91,17 +91,6 @@
       <p>
         <b>Methodology of Data Collection</b>:  
         According to <a href="https://www.gallup.com/178667/gallup-world-poll-work.aspx" target="_blank" class="GreenLink">Gallup</a>,
-        survey methods vary by country.  
-        - In countries with ≥80% telephone coverage, Gallup uses the random-digit-dial (RDD) method. Samples are purchased from regional providers
-        such as Sample Answers and Sample Solutions.  
-        - In countries with lower coverage, Gallup conducts face-to-face interviews using an area-frame design in randomly selected households.  
-        - The coverage area is the entire country, including rural regions, except in cases where interviewer safety is at risk or in sparsely populated
-        islands (specific countries not disclosed).  
-      </p>
-
-      <p>
-        <b>Methodology of Data Collection</b>:  
-        According to <a href="https://www.gallup.com/178667/gallup-world-poll-work.aspx" target="_blank" class="GreenLink">Gallup</a>,
         the way surveys are carried out depends on the country.  
       </p>
       <ul>
@@ -146,6 +135,97 @@
 
 
       <p>Missing data type is probably Missing Not at Random (MNaR) but for the sake of analysis simplicity, I'll treat it as Missing at Random (MaR)</p>
+      <!------------------------------------------------------------------------------------>
+      <h3>Methodology</h3>
+      <ol>
+        <li>Data Preparation</li>
+        <li>Handling Missing Data & Imputation</li>
+        <li>Principal Component Analysis (PCA)</li>
+        <li>GMM Clustering</li>
+        <li>Visualization & Animation</li>
+        <li>Export for Interactive Use</li>
+      </ol>
+
+      <!------------------------------------------------------------------------------------>
+      <h3>What is 'imputation'?</h3>
+      <p>
+        Imputation is the process of filling in missing values in the dataset with plausible estimates,
+        while preserving the original distribution of the data, avoiding systemic bias, and maintaining statistical validity.
+      </p>
+      <ol class="imputation">
+        <li class="LR">
+          For countries with just one or two missing years, I fit a linear regression line on their available values and
+          used the predicted value (plus a touch of noise) to fill the gap.
+        </li>
+        <li class="PMM">
+          For countries with many missing years, I borrowed information from similar countries in the same region/continent,
+          using Predictive Mean Matching (PMM) to insert realistic values.
+        </li>
+      </ol>
+
+      <h3>Types of Missing Data</h3>
+      <p>This matters because the type of missingness influences which imputation methods are valid:</p>
+      <ol class="missing_data">
+        <li class="MCaR">
+          <b>Missing Completely at Random (MCaR)</b>: probability of missingness is unrelated to observed or unobserved data.
+          Example: a lab technician loses some samples.
+        </li>
+        <li class="MaR">
+          <b>Missing at Random (MaR)</b>: missingness depends on observed data. This is the most common working assumption.
+          Example: younger respondents are less likely to answer income questions.
+        </li>
+        <li class="MNaR">
+          <b>Missing Not at Random (MNaR)</b>: missingness depends on the unobserved value itself.
+          Example: very wealthy people are less likely to report their true income.
+        </li>
+      </ol>
+
+      <!------------------------------------------------------------------------------------>
+      <h3>What is PCA?</h3>
+      <p>
+        Principal Component Analysis (PCA) is a dimensionality reduction technique that represents a dataset
+        with fewer dimensions while retaining as much information as possible. The tradeoff is captured in the
+        <i>explained variance</i> — how much of the original variability the reduced dataset preserves.
+        In this project, I reduced seven key variables to two axes, making it possible to create a
+        2-dimensional time-series visualization.
+      </p>
+
+      <h3>'Dimensional reduction'? 'Explained variance'?</h3>
+      <div style="display: flex; gap: 10px;">
+        <img src="/media/portable_charger.jpg"
+             alt="portable handphone charger"
+             style="width:200px; height:auto;">
+        <p style="margin: 0; max-width: 500px;">
+          Imagine this portable charger as a dataset with three variables: length, width, and height.
+          If I take a photo of it (reducing from 3D to 2D), I want that photo to capture as much of the
+          charger’s size as possible. The first principal axis might run corner-to-corner along its length,
+          and the second perpendicular axis could capture width. But some information (like true depth) is lost.
+          PCA formalizes this tradeoff by projecting variables into new axes (eigenvectors) that capture the most variance.
+        </p>
+      </div>
+
+      <h3>Ok, so what do PC1 and PC2 actually represent?</h3>
+      <p>
+        We can’t know their “true meaning,” but we can make educated guesses based on loadings:
+        PC1 might be called <i>Socioeconomic Factors</i> (driven by GDP per Capita, Social support,
+        Freedom to make life choices, and Healthy life expectancy at birth),
+        while PC2 could represent <i>Values/Societal Attitudes</i> (driven by Generosity and Perceptions of corruption).
+      </p>
+      <p>
+        Mathematically, PCs are eigenvectors of the data’s correlation matrix. PC1 is the eigenvector with the
+        largest eigenvalue (most variance explained); PC2 is the next, orthogonal to PC1. The eigenvalues correspond
+        to variance explained.  
+      </p>
+      <p>
+        In this dataset (after stochastic regression and PMM imputation), the scree plot below shows how much
+        variability each PC captures:
+      </p>
+      <div style="display: flex; align-items: center;">
+        <img src="/media/WHI_screeplot.png" 
+             alt="Screeplot of PCA" 
+             style="width: 600px; margin-right: 20px;">
+      </div>
+
       <!------------------------------------------------------------------------------------>
       <h3>Interpretation of plot</h3>
         <p>
@@ -211,92 +291,7 @@
           </li>
         </ol>
 
-      <!------------------------------------------------------------------------------------>
-      <h3>What is PCA?</h3> 
-      <p>
-        Principle Component Analysis (PCA) is a dimensional reduction technique that tries to explain an
-        original dataset using a smaller dimension (the smaller, the better). With the tradeoff being
-        how representative this smaller dimension dataset captures the original - the % explained variance.
-        In my case I want to collapse the 7 columns to 2 axes; so that I can do a 2-dimensional time-series visualization on it.
-      </p>
-      <!------------------------------------------------------------------------------------>
-      <h3>'dimensional reduction'? 'explained variance'?</h3>
-      <div style="display: flex; gap: 10px;">
-        <img src="/media/portable_charger.jpg"
-             alt="portable handphone charger"
-             style="width:200px; height:auto;">
-        <p style="margin: 0; max-width: 500px;">
-          Imagine this portable charger is a dataset of 3 variables: length, width, and height.
-          I want to snap a photo of it (reduce it to 2-Dimensions), and I want as much of the portable charger's
-          length, width and height as possible inside the photo. Intuitively we can deduce that the longest line
-          could be from the bottom left corner to its lengthwise-opposite right top corner, making up the first axis.
-          The second axis is a line perpendicular to the first that also goes from bottom-top l/r corners, but this
-          time widthwise. However, does this photo explain the portable charger's L/W/H well? We can argue that since
-          the photo is orthogonal, it is hard to see the actual length because the axes 'squishes' the
-          length/width/height information into a composite vector made up of varying weights of length/width/height.
-          (If we normalize this vector we get an eigenvector)
-        </p>
-      </div>
-      <!------------------------------------------------------------------------------------>
-      <h3>Ok, so what does PC1 and PC2 actually represent?</h3>
-      <p>
-        We don't actually know what it represents. Maybe PC1 can reasonably be called 'Socioeconomic factors', because GDP per Capita,
-        Social support, freedom to make life choices, and Healthy life expectancy at birth contributes quite a lot to PC1.
-        And maybe PC2 can be called 'Values/Societal attitudes', because Generosity, and perceptions of corruption contribute
-        mostly to PC2. We can only guess to its label looking at the various arrows contributing to the axes, and their relationships
-        as described within the rules of 2-D graphs.
-      </p>
-      <p>
-        As for what PCs are, they are eigenvectors of the dataset. PC1 represents the eigenvector which explains the most variability and
-        PC2 represents the orthogonal eigenvector that explains the second-most variability. The respective eigenvalues are the variances.
-      </p>
-      <p>
-        In this dataset's case (after stochastic linear regression, and stochastic predictive mean matching imputation)
-        we have this screechart denoting the variability of each PC:
-      </p>
-      <div style="display: flex; align-items: center;">
-        <img src="/media/WHI_screeplot.png" 
-             alt="Screeplot of PCA" 
-             style="width: 600px; margin-right: 20px;">
-      </div>
-      <!------------------------------------------------------------------------------------>
-      <h3>What is 'imputation'?</h3>
-      <p>
-        Imputation is the process of filling in missing values in the dataset with plausible estimates,
-        while preserving the original distribution of the data, avoid systemic bias, and maintain statistical validity.
-      </p>
-      <ol class="imputation">
-        <li class="LR">
-          There are several countries with missing values on one or two years.
-          I took the values of their other years, take a best fit LR line of those data,
-          and put in the intersection of the missing years and that best fit line's value + noise
-          into the data frame.
-        </li>
-        <li class="PMM">
-          There are several countries with missing values on most or all years.
-          I took the closest observed value of the mean of similar countries (from Regions/Continents column)
-          and put that in to the countries' respective year in the data frame.
-        </li>
-      </ol>
-      <!------------------------------------------------------------------------------------>
-      <h3> Types of missing data</h3>
-      <p> This is very important in how we choose which imputation methods to apply to missing values.</p>
-      <ol class="missing_data">
-        <li class="MCaR">
-            The least constraining one. The probability of missingness is independent of both observed and unobserved data,
-            so you can pretty much choose whichever imputation you deem best. How it happens: a lab technician accidentally
-            loses some test tubes. Oops!
-        </li>
-        <li class="MaR">
-            Missingness depends on observed data, the most common working assumption. Most imputation methods assume MAR.
-            How it happens: survey responders who are ___ will be less likely to answer ___.  
-        </li>
-        <li class="MNaR">
-            The most constraining one. Missingness depends on the unobserved value itself, even after accounting for other variables.
-            We would need some special imputation methods like selection models or sensitivity analysis. For example, rich people
-            are less likely to report income.
-        </li>
-      </ol>
+      
     </main>
   </body>
 </html>
