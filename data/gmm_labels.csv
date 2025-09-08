@@ -1,0 +1,1261 @@
+id,Country,Year,cluster
+1,Afghanistan,2015,2
+2,Albania,2015,3
+3,Algeria,2015,3
+4,Angola,2015,2
+5,Argentina,2015,4
+6,Armenia,2015,3
+7,Australia,2015,5
+8,Austria,2015,5
+9,Azerbaijan,2015,3
+10,Bahrain,2015,4
+11,Bangladesh,2015,2
+12,Belarus,2015,4
+13,Belgium,2015,5
+14,Benin,2015,2
+15,Bhutan,2015,1
+16,Bolivia,2015,3
+17,Bosnia and Herzegovina,2015,3
+18,Botswana,2015,2
+19,Brazil,2015,4
+20,Bulgaria,2015,3
+21,Burkina Faso,2015,2
+22,Burundi,2015,2
+23,Cambodia,2015,1
+24,Cameroon,2015,2
+25,Canada,2015,5
+26,Chad,2015,2
+27,Chile,2015,4
+28,China,2015,3
+29,Colombia,2015,4
+30,Comoros,2015,2
+31,Costa Rica,2015,4
+32,Croatia,2015,3
+33,Cyprus,2015,3
+34,Czech Republic,2015,4
+35,Denmark,2015,5
+36,Dominican Republic,2015,3
+37,Ecuador,2015,4
+38,El Salvador,2015,3
+39,Estonia,2015,4
+40,Ethiopia,2015,2
+41,Finland,2015,5
+42,France,2015,4
+43,Gabon,2015,3
+44,Georgia,2015,3
+45,Germany,2015,5
+46,Ghana,2015,2
+47,Greece,2015,3
+48,Guatemala,2015,3
+49,Guinea,2015,2
+50,Haiti,2015,2
+51,Honduras,2015,3
+52,Hungary,2015,3
+53,Iceland,2015,5
+54,India,2015,2
+55,Indonesia,2015,1
+56,Iraq,2015,2
+57,Ireland,2015,5
+58,Israel,2015,4
+59,Italy,2015,4
+60,Jamaica,2015,3
+61,Japan,2015,4
+62,Jordan,2015,3
+63,Kazakhstan,2015,4
+64,Kenya,2015,2
+65,Kosovo,2015,3
+66,Kuwait,2015,4
+67,Latvia,2015,3
+68,Lebanon,2015,3
+69,Lesotho,2015,2
+70,Liberia,2015,2
+71,Libya,2015,3
+72,Lithuania,2015,3
+73,Luxembourg,2015,5
+74,Madagascar,2015,2
+75,Malawi,2015,2
+76,Malaysia,2015,3
+77,Mali,2015,2
+78,Malta,2015,5
+79,Mauritania,2015,2
+80,Mauritius,2015,1
+81,Mexico,2015,4
+82,Moldova,2015,3
+83,Mongolia,2015,3
+84,Montenegro,2015,3
+85,Morocco,2015,3
+86,Mozambique,2015,2
+87,Myanmar,2015,1
+88,Namibia,2015,3
+89,Nepal,2015,2
+90,Netherlands,2015,5
+91,New Zealand,2015,5
+92,Nicaragua,2015,1
+93,Niger,2015,2
+94,Nigeria,2015,2
+95,North Macedonia,2015,3
+96,Norway,2015,5
+97,Pakistan,2015,2
+98,Panama,2015,4
+99,Paraguay,2015,3
+100,Peru,2015,3
+101,Philippines,2015,3
+102,Poland,2015,4
+103,Portugal,2015,4
+104,Qatar,2015,5
+105,Romania,2015,3
+106,Rwanda,2015,1
+107,Saudi Arabia,2015,4
+108,Senegal,2015,2
+109,Serbia,2015,3
+110,Sierra Leone,2015,2
+111,Singapore,2015,5
+112,Slovakia,2015,4
+113,Slovenia,2015,4
+114,Somalia,2015,1
+115,South Africa,2015,3
+116,South Sudan,2015,2
+117,Spain,2015,4
+118,Sri Lanka,2015,1
+119,Sudan,2015,2
+120,Sweden,2015,5
+121,Switzerland,2015,5
+122,Taiwan Province of China,2015,4
+123,Tajikistan,2015,2
+124,Tanzania,2015,2
+125,Thailand,2015,1
+126,Togo,2015,2
+127,Trinidad and Tobago,2015,4
+128,Tunisia,2015,3
+129,Turkey,2015,3
+130,Turkmenistan,2015,3
+131,Uganda,2015,2
+132,Ukraine,2015,3
+133,United Arab Emirates,2015,5
+134,United Kingdom,2015,5
+135,United States,2015,5
+136,Uruguay,2015,4
+137,Uzbekistan,2015,1
+138,Vietnam,2015,3
+139,Zambia,2015,2
+140,Zimbabwe,2015,2
+141,Afghanistan,2016,2
+142,Albania,2016,3
+143,Algeria,2016,3
+144,Angola,2016,2
+145,Argentina,2016,4
+146,Armenia,2016,2
+147,Australia,2016,5
+148,Austria,2016,5
+149,Azerbaijan,2016,3
+150,Bahrain,2016,4
+151,Bangladesh,2016,2
+152,Belarus,2016,3
+153,Belgium,2016,5
+154,Benin,2016,2
+155,Bhutan,2016,1
+156,Bolivia,2016,3
+157,Bosnia and Herzegovina,2016,2
+158,Botswana,2016,3
+159,Brazil,2016,4
+160,Bulgaria,2016,3
+161,Burkina Faso,2016,2
+162,Burundi,2016,2
+163,Cambodia,2016,2
+164,Cameroon,2016,2
+165,Canada,2016,5
+166,Chad,2016,2
+167,Chile,2016,4
+168,China,2016,3
+169,Colombia,2016,3
+170,Comoros,2016,2
+171,Costa Rica,2016,4
+172,Croatia,2016,3
+173,Cyprus,2016,3
+174,Czech Republic,2016,4
+175,Denmark,2016,5
+176,Dominican Republic,2016,3
+177,Ecuador,2016,3
+178,El Salvador,2016,3
+179,Estonia,2016,4
+180,Ethiopia,2016,2
+181,Finland,2016,5
+182,France,2016,4
+183,Gabon,2016,2
+184,Georgia,2016,2
+185,Germany,2016,5
+186,Ghana,2016,2
+187,Greece,2016,3
+188,Guatemala,2016,3
+189,Guinea,2016,2
+190,Haiti,2016,2
+191,Honduras,2016,2
+192,Hungary,2016,3
+193,Iceland,2016,5
+194,India,2016,2
+195,Indonesia,2016,1
+196,Iraq,2016,2
+197,Ireland,2016,5
+198,Israel,2016,4
+199,Italy,2016,3
+200,Jamaica,2016,3
+201,Japan,2016,4
+202,Jordan,2016,3
+203,Kazakhstan,2016,3
+204,Kenya,2016,2
+205,Kosovo,2016,2
+206,Kuwait,2016,4
+207,Latvia,2016,3
+208,Lebanon,2016,3
+209,Lesotho,2016,2
+210,Liberia,2016,2
+211,Libya,2016,3
+212,Lithuania,2016,3
+213,Luxembourg,2016,5
+214,Madagascar,2016,2
+215,Malawi,2016,2
+216,Malaysia,2016,1
+217,Mali,2016,2
+218,Malta,2016,1
+219,Mauritania,2016,2
+220,Mauritius,2016,3
+221,Mexico,2016,3
+222,Moldova,2016,3
+223,Mongolia,2016,3
+224,Montenegro,2016,3
+225,Morocco,2016,3
+226,Mozambique,2016,2
+227,Myanmar,2016,1
+228,Namibia,2016,3
+229,Nepal,2016,2
+230,Netherlands,2016,5
+231,New Zealand,2016,5
+232,Nicaragua,2016,1
+233,Niger,2016,2
+234,Nigeria,2016,2
+235,North Macedonia,2016,3
+236,Norway,2016,5
+237,Pakistan,2016,2
+238,Panama,2016,4
+239,Paraguay,2016,3
+240,Peru,2016,3
+241,Philippines,2016,3
+242,Poland,2016,3
+243,Portugal,2016,3
+244,Qatar,2016,5
+245,Romania,2016,3
+246,Rwanda,2016,1
+247,Saudi Arabia,2016,4
+248,Senegal,2016,2
+249,Serbia,2016,3
+250,Sierra Leone,2016,2
+251,Singapore,2016,5
+252,Slovakia,2016,3
+253,Slovenia,2016,4
+254,Somalia,2016,1
+255,South Africa,2016,2
+256,South Sudan,2016,2
+257,Spain,2016,4
+258,Sri Lanka,2016,1
+259,Sudan,2016,2
+260,Sweden,2016,5
+261,Switzerland,2016,5
+262,Taiwan Province of China,2016,4
+263,Tajikistan,2016,2
+264,Tanzania,2016,2
+265,Thailand,2016,1
+266,Togo,2016,2
+267,Trinidad and Tobago,2016,3
+268,Tunisia,2016,3
+269,Turkey,2016,3
+270,Turkmenistan,2016,3
+271,Uganda,2016,2
+272,Ukraine,2016,3
+273,United Arab Emirates,2016,5
+274,United Kingdom,2016,5
+275,United States,2016,5
+276,Uruguay,2016,4
+277,Uzbekistan,2016,1
+278,Vietnam,2016,3
+279,Zambia,2016,2
+280,Zimbabwe,2016,2
+281,Afghanistan,2017,2
+282,Albania,2017,3
+283,Algeria,2017,3
+284,Angola,2017,2
+285,Argentina,2017,4
+286,Armenia,2017,3
+287,Australia,2017,5
+288,Austria,2017,5
+289,Azerbaijan,2017,3
+290,Bahrain,2017,4
+291,Bangladesh,2017,2
+292,Belarus,2017,4
+293,Belgium,2017,5
+294,Benin,2017,2
+295,Bhutan,2017,1
+296,Bolivia,2017,3
+297,Bosnia and Herzegovina,2017,3
+298,Botswana,2017,3
+299,Brazil,2017,4
+300,Bulgaria,2017,3
+301,Burkina Faso,2017,2
+302,Burundi,2017,2
+303,Cambodia,2017,1
+304,Cameroon,2017,2
+305,Canada,2017,5
+306,Chad,2017,2
+307,Chile,2017,4
+308,China,2017,3
+309,Colombia,2017,4
+310,Comoros,2017,2
+311,Costa Rica,2017,4
+312,Croatia,2017,3
+313,Cyprus,2017,4
+314,Czech Republic,2017,4
+315,Denmark,2017,5
+316,Dominican Republic,2017,4
+317,Ecuador,2017,4
+318,El Salvador,2017,3
+319,Estonia,2017,4
+320,Ethiopia,2017,2
+321,Finland,2017,5
+322,France,2017,4
+323,Gabon,2017,3
+324,Georgia,2017,3
+325,Germany,2017,5
+326,Ghana,2017,2
+327,Greece,2017,3
+328,Guatemala,2017,3
+329,Guinea,2017,2
+330,Haiti,2017,2
+331,Honduras,2017,3
+332,Hungary,2017,3
+333,Iceland,2017,5
+334,India,2017,2
+335,Indonesia,2017,1
+336,Iraq,2017,3
+337,Ireland,2017,5
+338,Israel,2017,4
+339,Italy,2017,4
+340,Jamaica,2017,3
+341,Japan,2017,4
+342,Jordan,2017,3
+343,Kazakhstan,2017,4
+344,Kenya,2017,1
+345,Kosovo,2017,3
+346,Kuwait,2017,4
+347,Latvia,2017,4
+348,Lebanon,2017,3
+349,Lesotho,2017,2
+350,Liberia,2017,2
+351,Libya,2017,3
+352,Lithuania,2017,3
+353,Luxembourg,2017,5
+354,Madagascar,2017,2
+355,Malawi,2017,2
+356,Malaysia,2017,3
+357,Mali,2017,2
+358,Malta,2017,5
+359,Mauritania,2017,2
+360,Mauritius,2017,3
+361,Mexico,2017,4
+362,Moldova,2017,3
+363,Mongolia,2017,3
+364,Montenegro,2017,3
+365,Morocco,2017,3
+366,Mozambique,2017,2
+367,Myanmar,2017,1
+368,Namibia,2017,3
+369,Nepal,2017,1
+370,Netherlands,2017,5
+371,New Zealand,2017,5
+372,Nicaragua,2017,3
+373,Niger,2017,2
+374,Nigeria,2017,2
+375,North Macedonia,2017,3
+376,Norway,2017,5
+377,Pakistan,2017,2
+378,Panama,2017,4
+379,Paraguay,2017,3
+380,Peru,2017,3
+381,Philippines,2017,3
+382,Poland,2017,4
+383,Portugal,2017,4
+384,Qatar,2017,5
+385,Romania,2017,3
+386,Rwanda,2017,1
+387,Saudi Arabia,2017,4
+388,Senegal,2017,2
+389,Serbia,2017,3
+390,Sierra Leone,2017,2
+391,Singapore,2017,5
+392,Slovakia,2017,4
+393,Slovenia,2017,4
+394,Somalia,2017,1
+395,South Africa,2017,3
+396,South Sudan,2017,2
+397,Spain,2017,4
+398,Sri Lanka,2017,1
+399,Sudan,2017,2
+400,Sweden,2017,5
+401,Switzerland,2017,5
+402,Taiwan Province of China,2017,4
+403,Tajikistan,2017,3
+404,Tanzania,2017,2
+405,Thailand,2017,1
+406,Togo,2017,2
+407,Trinidad and Tobago,2017,4
+408,Tunisia,2017,3
+409,Turkey,2017,3
+410,Turkmenistan,2017,4
+411,Uganda,2017,2
+412,Ukraine,2017,3
+413,United Arab Emirates,2017,5
+414,United Kingdom,2017,5
+415,United States,2017,5
+416,Uruguay,2017,4
+417,Uzbekistan,2017,1
+418,Vietnam,2017,3
+419,Zambia,2017,2
+420,Zimbabwe,2017,2
+421,Afghanistan,2018,2
+422,Albania,2018,3
+423,Algeria,2018,3
+424,Angola,2018,2
+425,Argentina,2018,4
+426,Armenia,2018,3
+427,Australia,2018,5
+428,Austria,2018,5
+429,Azerbaijan,2018,3
+430,Bahrain,2018,4
+431,Bangladesh,2018,3
+432,Belarus,2018,4
+433,Belgium,2018,5
+434,Benin,2018,2
+435,Bhutan,2018,1
+436,Bolivia,2018,3
+437,Bosnia and Herzegovina,2018,3
+438,Botswana,2018,3
+439,Brazil,2018,4
+440,Bulgaria,2018,3
+441,Burkina Faso,2018,2
+442,Burundi,2018,2
+443,Cambodia,2018,1
+444,Cameroon,2018,2
+445,Canada,2018,5
+446,Chad,2018,2
+447,Chile,2018,4
+448,China,2018,4
+449,Colombia,2018,4
+450,Comoros,2018,2
+451,Costa Rica,2018,4
+452,Croatia,2018,3
+453,Cyprus,2018,4
+454,Czech Republic,2018,4
+455,Denmark,2018,5
+456,Dominican Republic,2018,4
+457,Ecuador,2018,4
+458,El Salvador,2018,3
+459,Estonia,2018,4
+460,Ethiopia,2018,2
+461,Finland,2018,5
+462,France,2018,4
+463,Gabon,2018,3
+464,Georgia,2018,3
+465,Germany,2018,5
+466,Ghana,2018,2
+467,Greece,2018,3
+468,Guatemala,2018,4
+469,Guinea,2018,2
+470,Haiti,2018,2
+471,Honduras,2018,3
+472,Hungary,2018,3
+473,Iceland,2018,5
+474,India,2018,2
+475,Indonesia,2018,1
+476,Iraq,2018,3
+477,Ireland,2018,5
+478,Israel,2018,5
+479,Italy,2018,4
+480,Jamaica,2018,4
+481,Japan,2018,4
+482,Jordan,2018,3
+483,Kazakhstan,2018,4
+484,Kenya,2018,2
+485,Kosovo,2018,3
+486,Kuwait,2018,4
+487,Latvia,2018,4
+488,Lebanon,2018,4
+489,Lesotho,2018,2
+490,Liberia,2018,2
+491,Libya,2018,4
+492,Lithuania,2018,3
+493,Luxembourg,2018,5
+494,Madagascar,2018,2
+495,Malawi,2018,2
+496,Malaysia,2018,4
+497,Mali,2018,2
+498,Malta,2018,5
+499,Mauritania,2018,2
+500,Mauritius,2018,4
+501,Mexico,2018,4
+502,Moldova,2018,3
+503,Mongolia,2018,3
+504,Montenegro,2018,3
+505,Morocco,2018,3
+506,Mozambique,2018,2
+507,Myanmar,2018,1
+508,Namibia,2018,3
+509,Nepal,2018,3
+510,Netherlands,2018,5
+511,New Zealand,2018,5
+512,Nicaragua,2018,4
+513,Niger,2018,2
+514,Nigeria,2018,2
+515,North Macedonia,2018,3
+516,Norway,2018,5
+517,Pakistan,2018,2
+518,Panama,2018,4
+519,Paraguay,2018,4
+520,Peru,2018,3
+521,Philippines,2018,3
+522,Poland,2018,4
+523,Portugal,2018,4
+524,Qatar,2018,5
+525,Romania,2018,4
+526,Rwanda,2018,1
+527,Saudi Arabia,2018,4
+528,Senegal,2018,3
+529,Serbia,2018,3
+530,Sierra Leone,2018,2
+531,Singapore,2018,5
+532,Slovakia,2018,4
+533,Slovenia,2018,4
+534,Somalia,2018,1
+535,South Africa,2018,3
+536,South Sudan,2018,2
+537,Spain,2018,4
+538,Sri Lanka,2018,3
+539,Sudan,2018,2
+540,Sweden,2018,5
+541,Switzerland,2018,5
+542,Taiwan Province of China,2018,4
+543,Tajikistan,2018,3
+544,Tanzania,2018,2
+545,Thailand,2018,4
+546,Togo,2018,2
+547,Trinidad and Tobago,2018,4
+548,Tunisia,2018,3
+549,Turkey,2018,3
+550,Turkmenistan,2018,3
+551,Uganda,2018,2
+552,Ukraine,2018,3
+553,United Arab Emirates,2018,4
+554,United Kingdom,2018,4
+555,United States,2018,4
+556,Uruguay,2018,4
+557,Uzbekistan,2018,5
+558,Vietnam,2018,3
+559,Zambia,2018,2
+560,Zimbabwe,2018,2
+561,Afghanistan,2019,2
+562,Albania,2019,3
+563,Algeria,2019,3
+564,Angola,2019,2
+565,Argentina,2019,4
+566,Armenia,2019,3
+567,Australia,2019,5
+568,Austria,2019,5
+569,Azerbaijan,2019,3
+570,Bahrain,2019,4
+571,Bangladesh,2019,3
+572,Belarus,2019,3
+573,Belgium,2019,4
+574,Benin,2019,2
+575,Bhutan,2019,1
+576,Bolivia,2019,3
+577,Bosnia and Herzegovina,2019,3
+578,Botswana,2019,3
+579,Brazil,2019,4
+580,Bulgaria,2019,3
+581,Burkina Faso,2019,2
+582,Burundi,2019,2
+583,Cambodia,2019,3
+584,Cameroon,2019,2
+585,Canada,2019,5
+586,Chad,2019,2
+587,Chile,2019,4
+588,China,2019,4
+589,Colombia,2019,4
+590,Comoros,2019,2
+591,Costa Rica,2019,4
+592,Croatia,2019,3
+593,Cyprus,2019,4
+594,Czech Republic,2019,4
+595,Denmark,2019,5
+596,Dominican Republic,2019,4
+597,Ecuador,2019,4
+598,El Salvador,2019,4
+599,Estonia,2019,4
+600,Ethiopia,2019,2
+601,Finland,2019,5
+602,France,2019,4
+603,Gabon,2019,3
+604,Georgia,2019,3
+605,Germany,2019,5
+606,Ghana,2019,2
+607,Greece,2019,3
+608,Guatemala,2019,4
+609,Guinea,2019,2
+610,Haiti,2019,2
+611,Honduras,2019,3
+612,Hungary,2019,3
+613,Iceland,2019,5
+614,India,2019,2
+615,Indonesia,2019,1
+616,Iraq,2019,3
+617,Ireland,2019,5
+618,Israel,2019,4
+619,Italy,2019,4
+620,Jamaica,2019,4
+621,Japan,2019,4
+622,Jordan,2019,3
+623,Kazakhstan,2019,4
+624,Kenya,2019,2
+625,Kosovo,2019,4
+626,Kuwait,2019,4
+627,Latvia,2019,4
+628,Lebanon,2019,3
+629,Lesotho,2019,2
+630,Liberia,2019,2
+631,Libya,2019,4
+632,Lithuania,2019,4
+633,Luxembourg,2019,5
+634,Madagascar,2019,2
+635,Malawi,2019,2
+636,Malaysia,2019,4
+637,Mali,2019,2
+638,Malta,2019,5
+639,Mauritania,2019,2
+640,Mauritius,2019,4
+641,Mexico,2019,4
+642,Moldova,2019,3
+643,Mongolia,2019,3
+644,Montenegro,2019,3
+645,Morocco,2019,3
+646,Mozambique,2019,2
+647,Myanmar,2019,1
+648,Namibia,2019,3
+649,Nepal,2019,3
+650,Netherlands,2019,5
+651,New Zealand,2019,5
+652,Nicaragua,2019,4
+653,Niger,2019,2
+654,Nigeria,2019,3
+655,North Macedonia,2019,3
+656,Norway,2019,5
+657,Pakistan,2019,3
+658,Panama,2019,4
+659,Paraguay,2019,4
+660,Peru,2019,4
+661,Philippines,2019,4
+662,Poland,2019,4
+663,Portugal,2019,4
+664,Qatar,2019,4
+665,Romania,2019,4
+666,Rwanda,2019,1
+667,Saudi Arabia,2019,4
+668,Senegal,2019,3
+669,Serbia,2019,3
+670,Sierra Leone,2019,2
+671,Singapore,2019,5
+672,Slovakia,2019,4
+673,Slovenia,2019,4
+674,Somalia,2019,1
+675,South Africa,2019,3
+676,South Sudan,2019,2
+677,Spain,2019,4
+678,Sri Lanka,2019,3
+679,Sudan,2019,2
+680,Sweden,2019,5
+681,Switzerland,2019,5
+682,Taiwan Province of China,2019,4
+683,Tajikistan,2019,3
+684,Tanzania,2019,2
+685,Thailand,2019,4
+686,Togo,2019,2
+687,Trinidad and Tobago,2019,4
+688,Tunisia,2019,3
+689,Turkey,2019,3
+690,Turkmenistan,2019,3
+691,Uganda,2019,2
+692,Ukraine,2019,3
+693,United Arab Emirates,2019,5
+694,United Kingdom,2019,5
+695,United States,2019,4
+696,Uruguay,2019,4
+697,Uzbekistan,2019,5
+698,Vietnam,2019,4
+699,Zambia,2019,2
+700,Zimbabwe,2019,2
+701,Afghanistan,2020,2
+702,Albania,2020,3
+703,Algeria,2020,3
+704,Angola,2020,2
+705,Argentina,2020,4
+706,Armenia,2020,3
+707,Australia,2020,5
+708,Austria,2020,5
+709,Azerbaijan,2020,4
+710,Bahrain,2020,4
+711,Bangladesh,2020,3
+712,Belarus,2020,4
+713,Belgium,2020,4
+714,Benin,2020,2
+715,Bhutan,2020,1
+716,Bolivia,2020,3
+717,Bosnia and Herzegovina,2020,3
+718,Botswana,2020,3
+719,Brazil,2020,4
+720,Bulgaria,2020,3
+721,Burkina Faso,2020,2
+722,Burundi,2020,2
+723,Cambodia,2020,3
+724,Cameroon,2020,2
+725,Canada,2020,5
+726,Chad,2020,2
+727,Chile,2020,4
+728,China,2020,4
+729,Colombia,2020,4
+730,Comoros,2020,2
+731,Costa Rica,2020,4
+732,Croatia,2020,3
+733,Cyprus,2020,4
+734,Czech Republic,2020,4
+735,Denmark,2020,5
+736,Dominican Republic,2020,4
+737,Ecuador,2020,4
+738,El Salvador,2020,4
+739,Estonia,2020,4
+740,Ethiopia,2020,2
+741,Finland,2020,5
+742,France,2020,4
+743,Gabon,2020,3
+744,Georgia,2020,3
+745,Germany,2020,5
+746,Ghana,2020,2
+747,Greece,2020,3
+748,Guatemala,2020,4
+749,Guinea,2020,2
+750,Haiti,2020,2
+751,Honduras,2020,3
+752,Hungary,2020,4
+753,Iceland,2020,5
+754,India,2020,2
+755,Indonesia,2020,1
+756,Iraq,2020,3
+757,Ireland,2020,5
+758,Israel,2020,4
+759,Italy,2020,4
+760,Jamaica,2020,4
+761,Japan,2020,4
+762,Jordan,2020,3
+763,Kazakhstan,2020,4
+764,Kenya,2020,1
+765,Kosovo,2020,3
+766,Kuwait,2020,4
+767,Latvia,2020,4
+768,Lebanon,2020,3
+769,Lesotho,2020,2
+770,Liberia,2020,2
+771,Libya,2020,3
+772,Lithuania,2020,4
+773,Luxembourg,2020,5
+774,Madagascar,2020,2
+775,Malawi,2020,2
+776,Malaysia,2020,4
+777,Mali,2020,2
+778,Malta,2020,5
+779,Mauritania,2020,2
+780,Mauritius,2020,4
+781,Mexico,2020,4
+782,Moldova,2020,3
+783,Mongolia,2020,3
+784,Montenegro,2020,3
+785,Morocco,2020,3
+786,Mozambique,2020,2
+787,Myanmar,2020,1
+788,Namibia,2020,3
+789,Nepal,2020,3
+790,Netherlands,2020,5
+791,New Zealand,2020,5
+792,Nicaragua,2020,4
+793,Niger,2020,2
+794,Nigeria,2020,2
+795,North Macedonia,2020,3
+796,Norway,2020,5
+797,Pakistan,2020,3
+798,Panama,2020,4
+799,Paraguay,2020,4
+800,Peru,2020,4
+801,Philippines,2020,4
+802,Poland,2020,4
+803,Portugal,2020,4
+804,Qatar,2020,5
+805,Romania,2020,4
+806,Rwanda,2020,1
+807,Saudi Arabia,2020,4
+808,Senegal,2020,3
+809,Serbia,2020,4
+810,Sierra Leone,2020,2
+811,Singapore,2020,5
+812,Slovakia,2020,4
+813,Slovenia,2020,4
+814,Somalia,2020,1
+815,South Africa,2020,3
+816,South Sudan,2020,2
+817,Spain,2020,4
+818,Sri Lanka,2020,3
+819,Sudan,2020,2
+820,Sweden,2020,5
+821,Switzerland,2020,5
+822,Taiwan Province of China,2020,4
+823,Tajikistan,2020,3
+824,Tanzania,2020,2
+825,Thailand,2020,4
+826,Togo,2020,2
+827,Trinidad and Tobago,2020,4
+828,Tunisia,2020,3
+829,Turkey,2020,3
+830,Turkmenistan,2020,3
+831,Uganda,2020,2
+832,Ukraine,2020,3
+833,United Arab Emirates,2020,5
+834,United Kingdom,2020,5
+835,United States,2020,4
+836,Uruguay,2020,4
+837,Uzbekistan,2020,5
+838,Vietnam,2020,4
+839,Zambia,2020,2
+840,Zimbabwe,2020,2
+841,Afghanistan,2021,2
+842,Albania,2021,3
+843,Algeria,2021,3
+844,Angola,2021,2
+845,Argentina,2021,3
+846,Armenia,2021,3
+847,Australia,2021,5
+848,Austria,2021,5
+849,Azerbaijan,2021,3
+850,Bahrain,2021,4
+851,Bangladesh,2021,2
+852,Belarus,2021,3
+853,Belgium,2021,4
+854,Benin,2021,2
+855,Bhutan,2021,1
+856,Bolivia,2021,3
+857,Bosnia and Herzegovina,2021,3
+858,Botswana,2021,3
+859,Brazil,2021,3
+860,Bulgaria,2021,3
+861,Burkina Faso,2021,2
+862,Burundi,2021,2
+863,Cambodia,2021,2
+864,Cameroon,2021,2
+865,Canada,2021,5
+866,Chad,2021,2
+867,Chile,2021,3
+868,China,2021,3
+869,Colombia,2021,3
+870,Comoros,2021,2
+871,Costa Rica,2021,4
+872,Croatia,2021,3
+873,Cyprus,2021,4
+874,Czech Republic,2021,4
+875,Denmark,2021,5
+876,Dominican Republic,2021,3
+877,Ecuador,2021,3
+878,El Salvador,2021,3
+879,Estonia,2021,4
+880,Ethiopia,2021,2
+881,Finland,2021,5
+882,France,2021,4
+883,Gabon,2021,3
+884,Georgia,2021,3
+885,Germany,2021,5
+886,Ghana,2021,2
+887,Greece,2021,3
+888,Guatemala,2021,3
+889,Guinea,2021,2
+890,Haiti,2021,2
+891,Honduras,2021,3
+892,Hungary,2021,3
+893,Iceland,2021,5
+894,India,2021,2
+895,Indonesia,2021,1
+896,Iraq,2021,2
+897,Ireland,2021,5
+898,Israel,2021,4
+899,Italy,2021,4
+900,Jamaica,2021,3
+901,Japan,2021,4
+902,Jordan,2021,3
+903,Kazakhstan,2021,4
+904,Kenya,2021,2
+905,Kosovo,2021,1
+906,Kuwait,2021,4
+907,Latvia,2021,3
+908,Lebanon,2021,3
+909,Lesotho,2021,2
+910,Liberia,2021,2
+911,Libya,2021,3
+912,Lithuania,2021,4
+913,Luxembourg,2021,5
+914,Madagascar,2021,2
+915,Malawi,2021,2
+916,Malaysia,2021,3
+917,Mali,2021,2
+918,Malta,2021,5
+919,Mauritania,2021,2
+920,Mauritius,2021,4
+921,Mexico,2021,4
+922,Moldova,2021,3
+923,Mongolia,2021,3
+924,Montenegro,2021,3
+925,Morocco,2021,2
+926,Mozambique,2021,2
+927,Myanmar,2021,1
+928,Namibia,2021,2
+929,Nepal,2021,2
+930,Netherlands,2021,5
+931,New Zealand,2021,5
+932,Nicaragua,2021,3
+933,Niger,2021,2
+934,Nigeria,2021,2
+935,North Macedonia,2021,3
+936,Norway,2021,5
+937,Pakistan,2021,2
+938,Panama,2021,4
+939,Paraguay,2021,3
+940,Peru,2021,3
+941,Philippines,2021,3
+942,Poland,2021,4
+943,Portugal,2021,4
+944,Qatar,2021,5
+945,Romania,2021,3
+946,Rwanda,2021,1
+947,Saudi Arabia,2021,4
+948,Senegal,2021,2
+949,Serbia,2021,3
+950,Sierra Leone,2021,2
+951,Singapore,2021,5
+952,Slovakia,2021,4
+953,Slovenia,2021,4
+954,Somalia,2021,1
+955,South Africa,2021,3
+956,South Sudan,2021,2
+957,Spain,2021,4
+958,Sri Lanka,2021,3
+959,Sudan,2021,2
+960,Sweden,2021,5
+961,Switzerland,2021,5
+962,Taiwan Province of China,2021,4
+963,Tajikistan,2021,3
+964,Tanzania,2021,2
+965,Thailand,2021,1
+966,Togo,2021,2
+967,Trinidad and Tobago,2021,4
+968,Tunisia,2021,3
+969,Turkey,2021,3
+970,Turkmenistan,2021,3
+971,Uganda,2021,2
+972,Ukraine,2021,3
+973,United Arab Emirates,2021,4
+974,United Kingdom,2021,5
+975,United States,2021,4
+976,Uruguay,2021,4
+977,Uzbekistan,2021,1
+978,Vietnam,2021,3
+979,Zambia,2021,2
+980,Zimbabwe,2021,2
+981,Afghanistan,2022,2
+982,Albania,2022,3
+983,Algeria,2022,3
+984,Angola,2022,2
+985,Argentina,2022,4
+986,Armenia,2022,4
+987,Australia,2022,5
+988,Austria,2022,5
+989,Azerbaijan,2022,4
+990,Bahrain,2022,4
+991,Bangladesh,2022,3
+992,Belarus,2022,4
+993,Belgium,2022,4
+994,Benin,2022,2
+995,Bhutan,2022,1
+996,Bolivia,2022,3
+997,Bosnia and Herzegovina,2022,4
+998,Botswana,2022,3
+999,Brazil,2022,4
+1000,Bulgaria,2022,4
+1001,Burkina Faso,2022,2
+1002,Burundi,2022,2
+1003,Cambodia,2022,3
+1004,Cameroon,2022,2
+1005,Canada,2022,5
+1006,Chad,2022,2
+1007,Chile,2022,4
+1008,China,2022,4
+1009,Colombia,2022,4
+1010,Comoros,2022,2
+1011,Costa Rica,2022,4
+1012,Croatia,2022,4
+1013,Cyprus,2022,4
+1014,Czech Republic,2022,4
+1015,Denmark,2022,5
+1016,Dominican Republic,2022,4
+1017,Ecuador,2022,4
+1018,El Salvador,2022,4
+1019,Estonia,2022,5
+1020,Ethiopia,2022,2
+1021,Finland,2022,5
+1022,France,2022,4
+1023,Gabon,2022,3
+1024,Georgia,2022,3
+1025,Germany,2022,5
+1026,Ghana,2022,2
+1027,Greece,2022,3
+1028,Guatemala,2022,4
+1029,Guinea,2022,2
+1030,Haiti,2022,2
+1031,Honduras,2022,3
+1032,Hungary,2022,4
+1033,Iceland,2022,5
+1034,India,2022,2
+1035,Indonesia,2022,1
+1036,Iraq,2022,3
+1037,Ireland,2022,5
+1038,Israel,2022,4
+1039,Italy,2022,4
+1040,Jamaica,2022,4
+1041,Japan,2022,4
+1042,Jordan,2022,3
+1043,Kazakhstan,2022,4
+1044,Kenya,2022,2
+1045,Kosovo,2022,4
+1046,Kuwait,2022,4
+1047,Latvia,2022,4
+1048,Lebanon,2022,2
+1049,Lesotho,2022,2
+1050,Liberia,2022,2
+1051,Libya,2022,4
+1052,Lithuania,2022,4
+1053,Luxembourg,2022,5
+1054,Madagascar,2022,2
+1055,Malawi,2022,2
+1056,Malaysia,2022,4
+1057,Mali,2022,2
+1058,Malta,2022,4
+1059,Mauritania,2022,3
+1060,Mauritius,2022,4
+1061,Mexico,2022,4
+1062,Moldova,2022,4
+1063,Mongolia,2022,3
+1064,Montenegro,2022,4
+1065,Morocco,2022,3
+1066,Mozambique,2022,2
+1067,Myanmar,2022,1
+1068,Namibia,2022,3
+1069,Nepal,2022,3
+1070,Netherlands,2022,5
+1071,New Zealand,2022,5
+1072,Nicaragua,2022,4
+1073,Niger,2022,2
+1074,Nigeria,2022,2
+1075,North Macedonia,2022,3
+1076,Norway,2022,5
+1077,Pakistan,2022,2
+1078,Panama,2022,4
+1079,Paraguay,2022,4
+1080,Peru,2022,3
+1081,Philippines,2022,4
+1082,Poland,2022,4
+1083,Portugal,2022,4
+1084,Qatar,2022,5
+1085,Romania,2022,4
+1086,Rwanda,2022,1
+1087,Saudi Arabia,2022,4
+1088,Senegal,2022,3
+1089,Serbia,2022,4
+1090,Sierra Leone,2022,2
+1091,Singapore,2022,5
+1092,Slovakia,2022,4
+1093,Slovenia,2022,4
+1094,Somalia,2022,1
+1095,South Africa,2022,3
+1096,South Sudan,2022,2
+1097,Spain,2022,4
+1098,Sri Lanka,2022,3
+1099,Sudan,2022,2
+1100,Sweden,2022,5
+1101,Switzerland,2022,5
+1102,Taiwan Province of China,2022,4
+1103,Tajikistan,2022,3
+1104,Tanzania,2022,1
+1105,Thailand,2022,4
+1106,Togo,2022,2
+1107,Trinidad and Tobago,2022,4
+1108,Tunisia,2022,3
+1109,Turkey,2022,3
+1110,Turkmenistan,2022,4
+1111,Uganda,2022,2
+1112,Ukraine,2022,3
+1113,United Arab Emirates,2022,5
+1114,United Kingdom,2022,5
+1115,United States,2022,4
+1116,Uruguay,2022,4
+1117,Uzbekistan,2022,1
+1118,Vietnam,2022,4
+1119,Zambia,2022,2
+1120,Zimbabwe,2022,2
+1121,Afghanistan,2023,2
+1122,Albania,2023,3
+1123,Algeria,2023,3
+1124,Angola,2023,2
+1125,Argentina,2023,4
+1126,Armenia,2023,4
+1127,Australia,2023,5
+1128,Austria,2023,5
+1129,Azerbaijan,2023,3
+1130,Bahrain,2023,4
+1131,Bangladesh,2023,2
+1132,Belarus,2023,4
+1133,Belgium,2023,4
+1134,Benin,2023,2
+1135,Bhutan,2023,1
+1136,Bolivia,2023,3
+1137,Bosnia and Herzegovina,2023,4
+1138,Botswana,2023,3
+1139,Brazil,2023,4
+1140,Bulgaria,2023,4
+1141,Burkina Faso,2023,2
+1142,Burundi,2023,2
+1143,Cambodia,2023,3
+1144,Cameroon,2023,2
+1145,Canada,2023,5
+1146,Chad,2023,2
+1147,Chile,2023,4
+1148,China,2023,4
+1149,Colombia,2023,4
+1150,Comoros,2023,2
+1151,Costa Rica,2023,4
+1152,Croatia,2023,4
+1153,Cyprus,2023,4
+1154,Czech Republic,2023,4
+1155,Denmark,2023,5
+1156,Dominican Republic,2023,4
+1157,Ecuador,2023,3
+1158,El Salvador,2023,4
+1159,Estonia,2023,5
+1160,Ethiopia,2023,2
+1161,Finland,2023,5
+1162,France,2023,4
+1163,Gabon,2023,3
+1164,Georgia,2023,3
+1165,Germany,2023,5
+1166,Ghana,2023,2
+1167,Greece,2023,3
+1168,Guatemala,2023,4
+1169,Guinea,2023,2
+1170,Haiti,2023,2
+1171,Honduras,2023,3
+1172,Hungary,2023,4
+1173,Iceland,2023,5
+1174,India,2023,2
+1175,Indonesia,2023,1
+1176,Iraq,2023,3
+1177,Ireland,2023,5
+1178,Israel,2023,4
+1179,Italy,2023,4
+1180,Jamaica,2023,4
+1181,Japan,2023,4
+1182,Jordan,2023,3
+1183,Kazakhstan,2023,4
+1184,Kenya,2023,2
+1185,Kosovo,2023,4
+1186,Kuwait,2023,4
+1187,Latvia,2023,4
+1188,Lebanon,2023,2
+1189,Lesotho,2023,2
+1190,Liberia,2023,2
+1191,Libya,2023,3
+1192,Lithuania,2023,4
+1193,Luxembourg,2023,5
+1194,Madagascar,2023,2
+1195,Malawi,2023,2
+1196,Malaysia,2023,4
+1197,Mali,2023,2
+1198,Malta,2023,4
+1199,Mauritania,2023,2
+1200,Mauritius,2023,4
+1201,Mexico,2023,4
+1202,Moldova,2023,4
+1203,Mongolia,2023,3
+1204,Montenegro,2023,4
+1205,Morocco,2023,3
+1206,Mozambique,2023,2
+1207,Myanmar,2023,1
+1208,Namibia,2023,3
+1209,Nepal,2023,3
+1210,Netherlands,2023,5
+1211,New Zealand,2023,5
+1212,Nicaragua,2023,4
+1213,Niger,2023,2
+1214,Nigeria,2023,3
+1215,North Macedonia,2023,3
+1216,Norway,2023,5
+1217,Pakistan,2023,2
+1218,Panama,2023,4
+1219,Paraguay,2023,4
+1220,Peru,2023,3
+1221,Philippines,2023,3
+1222,Poland,2023,4
+1223,Portugal,2023,4
+1224,Qatar,2023,5
+1225,Romania,2023,4
+1226,Rwanda,2023,1
+1227,Saudi Arabia,2023,4
+1228,Senegal,2023,2
+1229,Serbia,2023,4
+1230,Sierra Leone,2023,2
+1231,Singapore,2023,5
+1232,Slovakia,2023,4
+1233,Slovenia,2023,4
+1234,Somalia,2023,1
+1235,South Africa,2023,3
+1236,South Sudan,2023,2
+1237,Spain,2023,4
+1238,Sri Lanka,2023,3
+1239,Sudan,2023,2
+1240,Sweden,2023,5
+1241,Switzerland,2023,5
+1242,Taiwan Province of China,2023,4
+1243,Tajikistan,2023,3
+1244,Tanzania,2023,1
+1245,Thailand,2023,4
+1246,Togo,2023,2
+1247,Trinidad and Tobago,2023,4
+1248,Tunisia,2023,3
+1249,Turkey,2023,3
+1250,Turkmenistan,2023,3
+1251,Uganda,2023,2
+1252,Ukraine,2023,3
+1253,United Arab Emirates,2023,5
+1254,United Kingdom,2023,5
+1255,United States,2023,4
+1256,Uruguay,2023,4
+1257,Uzbekistan,2023,1
+1258,Vietnam,2023,4
+1259,Zambia,2023,2
+1260,Zimbabwe,2023,2

@@ -1,0 +1,119 @@
+<div id="plot" style="width:100%;max-width:980px;height:640px;margin:auto"></div>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script>
+(async function () {
+  // ---- Load artifacts ----
+  const scores = await (await fetch("artifacts/pca_scores_2D_ext.json")).json(); // rows
+  const means  = await (await fetch("artifacts/gmm_means.json")).json();         // rows: component, PC1, PC2
+  const covs   = await (await fetch("artifacts/gmm_covariances.json")).json();   // rows: component, PC1_PC1, PC1_PC2, PC2_PC1, PC2_PC2
+
+  // ---- Helpers ----
+  const years = [...new Set(scores.map(r => r.Year))].sort((a,b)=>a-b);
+  const palette = ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b"];
+
+  function ellipsePoints(mu, S, k=1, n=100){
+    // mu: [m1,m2], S: [[s11,s12],[s21,s22]]
+    // Ellipse of Mahalanobis distance k: mu + U * sqrt(λ) * k * [cos; sin]
+    const a = S[0][0], b = S[0][1], c = S[1][1];
+    const tr = a + c, det = a*c - b*b;
+    const l1 = tr/2 + Math.sqrt(Math.max(0, (tr*tr)/4 - det));
+    const l2 = tr/2 - Math.sqrt(Math.max(0, (tr*tr)/4 - det));
+    // eigenvectors
+    const v1 = [b, l1 - a]; // unnormalized
+    const n1 = Math.hypot(v1[0], v1[1]) || 1; const u1 = [v1[0]/n1, v1[1]/n1];
+    const u2 = [-u1[1], u1[0]]; // orthogonal
+    const r1 = Math.sqrt(Math.max(0,l1)) * k, r2 = Math.sqrt(Math.max(0,l2)) * k;
+
+    const xs=[], ys=[];
+    for (let t=0; t<=n; t++){
+      const th = 2*Math.PI*t/n;
+      const p = [
+        mu[0] + r1*Math.cos(th)*u1[0] + r2*Math.sin(th)*u2[0],
+        mu[1] + r1*Math.cos(th)*u1[1] + r2*Math.sin(th)*u2[1]
+      ];
+      xs.push(p[0]); ys.push(p[1]);
+    }
+    return {x: xs, y: ys};
+  }
+
+  function tracesForYear(Y){
+    const pts = scores.filter(r => r.Year === Y);
+    // scatter by cluster (keeps legend colors stable)
+    const clusters = [...new Set(scores.map(r=>r.Cluster))].sort((a,b)=>a-b);
+    const scatters = clusters.map((cl, i) => {
+      const S = pts.filter(r=>r.Cluster===cl);
+      return {
+        type: "scatter",
+        mode: "markers+text",
+        name: `Cluster ${cl}`,
+        x: S.map(r=>r.PC1),
+        y: S.map(r=>r.PC2),
+        text: S.map(r=>r.Country),
+        textposition: "top center",
+        textfont: {size: 9},
+        hovertemplate: "<b>%{text}</b><br>PC1=%{x:.2f}<br>PC2=%{y:.2f}<extra></extra>",
+        marker: {size: 7, opacity: 0.9, line:{width:1}},
+        marker_color: palette[(cl-1)%palette.length]
+      };
+    });
+
+    // ellipses from GMM params (1-sigma)
+    const ellipses = means.map((m,i)=>{
+      const C = covs.find(c=>c.component===m.component);
+      const ptsE = ellipsePoints([m.PC1, m.PC2],
+                                 [[C.PC1_PC1, C.PC1_PC2],[C.PC2_PC1, C.PC2_PC2]],
+                                 1.0, 120);
+      return {
+        type: "scatter",
+        mode: "lines",
+        x: ptsE.x, y: ptsE.y,
+        name: `Comp ${m.component} (1σ)`,
+        hoverinfo: "skip",
+        line: {width: 2},
+        showlegend: false
+      };
+    });
+
+    // means as crosses
+    const meanTrace = {
+      type: "scatter",
+      mode: "markers",
+      x: means.map(m=>m.PC1),
+      y: means.map(m=>m.PC2),
+      marker: {symbol: "x", size: 10, line:{width:2}},
+      name: "GMM means",
+      hovertemplate: "μ: (%{x:.2f}, %{y:.2f})<extra></extra>"
+    };
+
+    return [...scatters, ...ellipses, meanTrace];
+  }
+
+  // ---- Initial plot ----
+  const layout = {
+    title: "GMM on PCA (2D)",
+    xaxis: {title:"PC1", zeroline:true},
+    yaxis: {title:"PC2", zeroline:true},
+    hovermode: "closest",
+    legend: {orientation:"v"},
+    margin: {l:60,r:20,t:60,b:60},
+    updatemenus: [{
+      type: "buttons", x: 0.02, y: 1.12, xanchor:"left",
+      buttons: [
+        {label:"Play", method:"animate", args:[null, {fromcurrent:true, frame:{duration:700}, transition:{duration:0}}]},
+        {label:"Pause", method:"animate", args:[[null], {mode:"immediate"}]}
+      ]
+    }],
+    sliders: [{
+      pad:{t:30}, currentvalue:{prefix:"Year: "},
+      steps: years.map(y => ({label: y, method:"animate", args:[[String(y)], {mode:"immediate", transition:{duration:0}, frame:{duration:0}}]}))
+    }]
+  };
+
+  const frames = years.map(y => ({name:String(y), data: tracesForYear(y)}));
+  const init = tracesForYear(years[0]);
+
+  Plotly.newPlot("plot", init, layout).then(()=>{
+    Plotly.addFrames("plot", frames);
+  });
+})();
+</script>

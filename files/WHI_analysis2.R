@@ -275,7 +275,7 @@ df_imputed <- lapply(seq_len(m), function(i) {
 
 ### Visualization time! ###
 
-# collapse imputations -> average (as you had)
+# collapse imputations -> average
 df_avg <- bind_rows(completed_by_m, .id = "imputation") %>%
   group_by(Country, Year, `Continent/Region`) %>%
   summarise(across(where(is.numeric), mean, na.rm = TRUE), .groups = "drop")
@@ -336,7 +336,7 @@ load_2D <- as.data.frame(var_corr)
 colnames(load_2D)[1:2] <- c("PC1", "PC2")          # ensure standard names
 load_2D$Variable <- rownames(var_corr)
 
-# 2) be extra sure these are numeric (guards against weird coercions)
+# 2) be extra sure these are numeric (guards against weird coercion)
 load_2D <- load_2D %>%
   dplyr::mutate(
     PC1 = as.numeric(PC1),
@@ -358,11 +358,19 @@ load_2D <- load_2D %>%
     yend = PC2 * sfac
   )
 
-# split: remove GDP per Capita + Social support from the base layer
+# split: remove from the base layer
 special <- c("GDP per Capita", "Social support", "Healthy life expectancy at birth")
+
+# everything else except the three
 load_2D_rest <- dplyr::filter(load_2D, !Variable %in% special)
+
+# the three
 load_2D_triplet <- dplyr::filter(load_2D, Variable %in% special)
+
+# just score
 load_2D_score <- load_2D_rest %>% dplyr::filter(Variable == "Score")
+
+# Generosity, Perceptions of corruption, and Freedom to Make Life choices 
 load_2D_rest <- load_2D_rest %>% dplyr::filter(!Variable == "Score")
 
 # cluster palette (from extended data)
@@ -372,88 +380,246 @@ lev <- sort(unique(scores_2D_ext$Cluster))
 pal_named <- setNames(pal[seq_along(lev)], lev)
 
 # ---- plot ----
-p <- ggplot(scores_2D_ext, aes(PC1, PC2, group = Country)) +
-  geom_hline(yintercept=0, color="grey90", linewidth=0.4) +
-  geom_vline(xintercept=0, color="grey90", linewidth=0.4) +
-  
-  # variable loadings
-  # Bottom 3
-  geom_segment(
-    data = load_2D_rest, inherit.aes = FALSE,
-    aes(x = 0, y = 0, xend = xend, yend = yend),
-    color = "grey40", linewidth = 0.6,
-    arrow = arrow(length = unit(0.15, "cm"))
-  ) +
-  geom_text(
-    data = load_2D_rest, inherit.aes = FALSE,
-    aes(x = xend, y = yend, label = Variable),
-    color = "grey20", size = 3, vjust = -0.4,
-    nudge_x = 0.3,
-    nudge_y = -0.2
-  ) +
-  # Top 3
-  geom_segment(
-    data = load_2D_triplet, inherit.aes = FALSE,
-    aes(x = 0, y = 0, xend = xend, yend = yend),
-    color = "grey40", linewidth = 0.6,
-    arrow = arrow(length = unit(0.15, "cm"))
-  ) +
-  geom_text(
-    data = load_2D_triplet, inherit.aes = FALSE,
-    aes(x = xend, y = yend, label = Variable),
-#    nudge_x = c(0.55, 0.5, 1.05),  # order matches rows in load_2D_pair
-#    nudge_y = c(0.08, 0.17, 0.05),
-    nudge_x = c(.59, -0.5, 1.18),  # order matches rows in load_2D_pair
-    nudge_y = c(0.05, 0.1, 0.02),
-    color = "grey20", size = 3
-  )+
-  # Score
-  geom_segment(
-    data = load_2D_score, inherit.aes = FALSE,
-    aes(x = 0, y = 0, xend = xend, yend = yend),
-    color = "grey40", linewidth = 0.6,
-    arrow = arrow(length = unit(0.15, "cm"))
-  ) +
-  geom_text(
-    data = load_2D_score, inherit.aes = FALSE,
-    aes(x = xend, y = yend, label = Variable),
-    nudge_x = 0.25,
-    nudge_y = 0.05,
-    color = "grey20", size = 3
-  )+
-  
-  # country labels colored by cluster
-  geom_text(aes(label = Country,
-                color = factor(Cluster)),
-            size = 2.3, alpha = 0.9, key_glyph = "point") +
-  
-  scale_color_manual(values = pal_named, name = "Cluster", drop = FALSE) +
-  
-  scale_x_continuous(limits = xr, expand = expansion(mult = 0.06)) +
-  scale_y_continuous(limits = yr, expand = expansion(mult = 0.06)) +
-  coord_equal() +
-  labs(title = "GMM on PCA (2D)", subtitle = "Yearly states") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank()) +
-  
-  # BIG bottom-left year label that flips only at end of transition
-  labs(tag = "{ifelse(is.na(previous_state), closest_state, previous_state)}") +
-  theme(
-    plot.tag = element_text(size = 36, face = "bold"),
-    plot.tag.position = c(0.01, 0.02)  # bottom-left in [0,1]
-  ) +
-  
-  # animate by discrete Year with easing
-  gganimate::transition_states(
-    Year, transition_length = 4, state_length = 1, wrap = FALSE
-  ) +
-  gganimate::ease_aes("quadratic-in-out")
 
-gganimate::animate(
-  p,
-  nframes = 450, fps = 30, end_pause = 30,   # hold on 2023 a bit
-  width = 1800, height = 1200, res = 150,
-  def = ragg::agg_png(),
-  renderer = gganimate::av_renderer("gmm_pca2D_yearlabel_to2023.mp4")
+p_plot <- function(render_w = 1920, render_h = 1080){
+  sf <- render_w / 1920 # original width
+  p <- ggplot(scores_2D_ext, aes(PC1, PC2, group = Country)) +
+    geom_hline(yintercept=0, color="grey90", linewidth=0.4*sf) +
+    geom_vline(xintercept=0, color="grey90", linewidth=0.4*sf) +
+    
+    ## variable loadings — shrink arrows & labels a bit ##
+    
+    # GDP per Capita, Social Support, Healthy Life Expectancy at Birth
+    geom_segment(
+      data = load_2D_triplet, inherit.aes = FALSE,
+      aes(x = 0, y = 0, xend = xend, yend = yend),
+      color = "grey40", linewidth = 0.6*sf,
+      arrow = arrow(length = unit(0.12*sf, "cm"))
+    ) +
+    geom_text(
+      data = load_2D_triplet, inherit.aes = FALSE,
+      aes(x = xend, y = yend, label = Variable),
+      nudge_x = c(.59, -0.5, 1.18) * sf,
+      nudge_y = c(0.05, 0.10, 0.02) * sf,
+      color = "grey20", size = 3*sf
+    ) +
+    
+    # 
+    geom_segment(
+      data = load_2D_rest, inherit.aes = FALSE,
+      aes(x = 0, y = 0, xend = xend, yend = yend),
+      color = "grey40", linewidth = 0.6*sf,
+      arrow = arrow(length = unit(0.12*sf, "cm"))
+    ) +
+    geom_text(
+      data = load_2D_rest, inherit.aes = FALSE,
+      aes(x = xend, y = yend, label = Variable),
+      color = "grey20", size = 3*sf, vjust = -0.4,
+      nudge_x = 0.25*sf, nudge_y = -0.18*sf
+    ) +
+    
+    # 
+    geom_segment(
+      data = load_2D_score, inherit.aes = FALSE,
+      aes(x = 0, y = 0, xend = xend, yend = yend),
+      color = "grey40", linewidth = 0.6*sf,
+      arrow = arrow(length = unit(0.12*sf, "cm"))
+    ) +
+    geom_text(
+      data = load_2D_score, inherit.aes = FALSE,
+      aes(x = xend, y = yend, label = Variable),
+      nudge_x = 0.22*sf, nudge_y = 0.05*sf,
+      color = "grey20", size = 3*sf
+    ) +
+    
+    # country labels colored by cluster
+    geom_text(
+      aes(label = Country, color = factor(Cluster)),
+      size = 2.0*sf, alpha = 0.9, key_glyph = "point"
+    ) +
+    
+    scale_color_manual(values = pal_named, name = "Cluster", drop = FALSE) +
+    
+    scale_x_continuous(limits = xr, expand = expansion(mult = 0.06)) +
+    scale_y_continuous(limits = yr, expand = expansion(mult = 0.06)) +
+    coord_equal() +
+    labs(title = "GMM on PCA (2D)", subtitle = "Yearly states") +
+    
+    # Base font
+    theme_minimal(base_size = 12*sf) +
+    theme(
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_blank(),
+      
+      # Legend moves to bottom and wraps into two rows
+      legend.position   = "bottom",
+      legend.title      = element_text(size = 10*sf, face = "bold"),
+      legend.text       = element_text(size = 9*sf),
+      legend.key.width  = unit(14*sf, "pt"),
+      legend.key.height = unit(10*sf, "pt"),
+      legend.spacing.y  = unit(2*sf, "pt"),
+      legend.spacing.x  = unit(6*sf, "pt"),
+      
+      # BIG bottom-left year label
+      plot.tag          = element_text(size = 36*sf, face = "bold"),
+      plot.tag.position = c(0.012, 0.025)
+    ) +
+    
+    # Wrap legend items (2 rows) and legend points
+    guides(
+      color = guide_legend(
+        nrow = 2,
+        byrow = TRUE,
+        override.aes = list(size = 2.5*sf)
+      )
+    ) +
+    
+    # animate by discrete Year with easing
+    gganimate::transition_states(
+      Year, transition_length = 4, state_length = 1, wrap = FALSE
+    ) +
+    gganimate::ease_aes("quadratic-in-out") +
+    labs(tag = "{ifelse(is.na(previous_state), closest_state, previous_state)}")
+}
+  
+##### Animation functions #####
+###############################
+
+# 1 #
+animate_default <- function(){
+  p_plot(1800, 1200)
+  gganimate::animate(
+    p,
+    nframes = 450, fps = 30, end_pause = 30,   # hold on 2023 a bit
+    width = 1800, height = 1200, res = 150,
+    def = ragg::agg_png(),
+    renderer = gganimate::av_renderer("gmm_pca2D_yearlabel_to2023.mp4")
+  )
+}
+
+# 2 #
+animate_desktop <- function(){
+  p_plot()
+  gganimate::animate(
+    p,
+    nframes   = 450,
+    fps       = 30,
+    end_pause = 30,              # hold on last frame
+    width     = 1800,
+    height    = 1200,
+    res       = 150,
+    device    = "ragg_png",      # high-quality PNG frames via ragg
+    renderer  = gganimate::ffmpeg_renderer(
+      format  = "mp4",
+      options = list(
+        vcodec   = "libx264",    # H.264 encoder
+        pix_fmt  = "yuv420p",    # widest playback compatibility
+        crf      = 20,           # quality (lower = better, ~18–23 typical)
+        preset   = "slow",       # speed/quality tradeoff: ultrafast…placebo
+        movflags = "+faststart"  # put moov atom first for web streaming
+      )
+    )
+  )
+}
+
+# 3 #
+animate_mobile <- function(){
+  p_plot(1280, 720)
+  gganimate::animate(
+    p, nframes=450, fps=30, end_pause=30, width=1280, height=720, res=120,
+    device="ragg_png",
+    renderer=gganimate::ffmpeg_renderer(
+      format="mp4",
+      options=list(vcodec="libx264", pix_fmt="yuv420p", crf=22, preset="slow", movflags="+faststart")
+    )
+  )
+}
+
+# function call with empty brackets e.g.animate_mobile()
+
+### Exporting for interactive website ###
+
+# --- EXPORT PCA + GMM ARTIFACTS ---------------------------------------------
+# deps
+library(readr)
+library(jsonlite)
+dir.create("artifacts", showWarnings = FALSE)
+
+# 1) Save whole fitted objects (best for reuse)
+saveRDS(pca,        file = "artifacts/pca.rds")
+saveRDS(global_fit, file = "artifacts/gmm_mclust.rds")
+
+# 2) PCA exports --------------------------------------------------------------
+# 2a) Scores (use the extended table you animated with)
+scores_out <- scores_2D_ext[, c("Country","Year","PC1","PC2","Cluster","Continent/Region")]
+write_csv(scores_out, "artifacts/pca_scores_2D_ext.csv")
+
+# 2b) Loadings for PC1-PC2 (you already built load_2D)
+write_csv(load_2D[, c("Variable","PC1","PC2")], "artifacts/pca_loadings_2D.csv")
+
+# 2c) Explained variance
+expl_var   <- pca$sdev^2
+expl_tbl   <- data.frame(
+  PC       = paste0("PC", seq_along(expl_var)),
+  variance = expl_var,
+  var_prop = expl_var / sum(expl_var)
 )
+write_csv(expl_tbl, "artifacts/pca_variance.csv")
+
+# 2d) Preprocessing (centering/scaling) to apply the same transform later
+pre_tbl <- data.frame(variable = names(pca$center),
+                      center   = as.numeric(pca$center),
+                      scale    = as.numeric(pca$scale))
+write_csv(pre_tbl, "artifacts/pca_preprocess.csv")
+
+# 3) GMM exports (mclust) ----------------------------------------------------
+# Hard labels & soft responsibilities for the extended set
+gmm_pred_all <- predict(global_fit, newdata = dplyr::select(scores_2D_ext, PC1, PC2))
+labels_tbl <- data.frame(id = seq_len(nrow(scores_2D_ext)),
+                         Country = scores_2D_ext$Country,
+                         Year    = scores_2D_ext$Year,
+                         cluster = gmm_pred_all$classification)
+write_csv(labels_tbl, "artifacts/gmm_labels.csv")
+
+resp_tbl <- as.data.frame(gmm_pred_all$z)
+colnames(resp_tbl) <- paste0("comp_", seq_len(ncol(resp_tbl)))
+resp_tbl <- cbind(scores_2D_ext[c("Country","Year")], resp_tbl)
+write_csv(resp_tbl, "artifacts/gmm_responsibilities.csv")
+
+# Parameters: means (in PC space), covariances, and weights
+means_mat <- t(global_fit$parameters$mean)                # K x 2
+colnames(means_mat) <- c("PC1","PC2")
+means_tbl <- data.frame(component = seq_len(nrow(means_mat)), means_mat)
+write_csv(means_tbl, "artifacts/gmm_means.csv")
+
+weights_tbl <- data.frame(component = seq_along(global_fit$parameters$pro),
+                          weight    = global_fit$parameters$pro)
+write_csv(weights_tbl, "artifacts/gmm_weights.csv")
+
+# Covariances: 2x2xK array — easiest to keep as RDS; also provide flattened CSV
+cov_arr <- global_fit$parameters$variance$sigma
+saveRDS(cov_arr, "artifacts/gmm_covariances.rds")
+
+# Flatten each 2x2 into a row (PC1_PC1, PC1_PC2, PC2_PC1, PC2_PC2)
+flatten_cov <- function(S) {
+  data.frame(PC1_PC1 = S[1,1], PC1_PC2 = S[1,2], PC2_PC1 = S[2,1], PC2_PC2 = S[2,2])
+}
+cov_tbl <- do.call(rbind, lapply(seq_len(dim(cov_arr)[3]), function(k) flatten_cov(cov_arr[,,k])))
+cov_tbl$component <- seq_len(nrow(cov_tbl))
+cov_tbl <- cov_tbl[, c("component","PC1_PC1","PC1_PC2","PC2_PC1","PC2_PC2")]
+write_csv(cov_tbl, "artifacts/gmm_covariances_flat.csv")
+
+# Fit stats
+fit_tbl <- data.frame(loglik = global_fit$loglik,
+                      df     = global_fit$df,
+                      BIC    = global_fit$bic)
+write_csv(fit_tbl, "artifacts/gmm_fitstats.csv")
+
+# 4) (Optional) JSON bundles for a webpage -----------------------------------
+write_json(scores_out,  "artifacts/pca_scores_2D_ext.json",  dataframe = "rows", pretty = TRUE)
+write_json(load_2D,     "artifacts/pca_loadings_2D.json",    dataframe = "rows", pretty = TRUE)
+write_json(means_tbl,   "artifacts/gmm_means.json",          dataframe = "rows", pretty = TRUE)
+write_json(weights_tbl, "artifacts/gmm_weights.json",        dataframe = "rows", pretty = TRUE)
+write_json(cov_tbl,     "artifacts/gmm_covariances.json",    dataframe = "rows", pretty = TRUE)
+write_json(resp_tbl,    "artifacts/gmm_responsibilities.json", dataframe = "rows", pretty = TRUE)
+

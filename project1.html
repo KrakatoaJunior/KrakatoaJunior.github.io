@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="year-video-slider.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/year-video-slider.js"></script>
   </head>
   <body>
     <header>
@@ -24,7 +24,7 @@
       <p>
         <a href="https://www.kaggle.com/datasets/agrafintech/world-happiness-index-and-inflation-dataset" target="_blank" class="GreenLink"> Kaggle source link</a> |
         <a href="files/WHI_analysis2.R" download class="GreenLink">Download R Script</a> |
-        <a href="files/WHI_Inflation.csv" download class="GreenLink">Download CSV file</a>
+        <a href="data/WHI_Inflation.csv" download class="GreenLink">Download CSV file</a>
       </p>
       <year-video-slider
         src="/media/whi_pca_gmm.mp4"
@@ -38,52 +38,207 @@
       </year-video-slider>
       <u>Note</u>:
       <ol>
-        <li> Djibouti, Maldives, Oman, Puerto Rico, and Suriname are not in this analysis due to grossly missing data</li>
-        <li>Country is not a variable taken into account when calculating for World Happiness Index in this analysis</li>
-        <li>Missing data is treated as Missing At Random (MAR)</li>
+        <li>Djibouti, Maldives, Oman, Puerto Rico, and Suriname are not in this analysis due to grossly missing data.</li>
+        <li>The variables 'Country' and 'Region/Continent' are not taken into account when calculating for World Happiness Index in this analysis.</li>
+        <li>Missing data is treated as Missing At Random (MAR) even though it's probably Missing Not at Random (MNaR).</li>
+        <li>The figure above explains 67.1% of total variance.</li>
       </ol>
+      <!------------------------------------------------------------------------------------>
+      <h3>Motivation behind the project</h3>
+      <p>
+        In my intro to Data Science class at San Jose State University, there was a group project that constitutes 15% of the overall grade.
+        Despite getting an A, I was somewhat dissatisfied because the content does not faithfully correspond to the methodology we presented. For example,
+        I espoused a stochastic imputation, but the 'stochastic' part ended on a majority vote for number of clusters after bayesian information
+        criterion (BIC) was ran on all the imputations, when it should have carried on to the principle component analysis and gaussian mixed models.
+        Now that I have time, I could finally extend the project to my professional satisfaction as a showcase for my entry-level job search.
+      </p>
+      <p>
+        There was no special reason behind my group's choosing World Happiness Index over any other datasets, it simply looked interesting what we
+        would find in the analysis.
+      </p>
+      <!------------------------------------------------------------------------------------>
+      <h3>The Data</h3>
+      <p>
+        The data was taken from user 'Agra Fintech' on Kaggle, an online learning platform similar to LeetCode, who claims to get it from the World
+        Happiness Index. The World Happiness Index (WHI) is published by the Wellbeing Research Centre at the University of Oxford, in partnership with Gallup,
+        the UN Sustainable Development Solutions Network and an independent editorial board.
+      </p>
+      <p>
+        The Gallup World Poll is the product of Gallup Incorporated, a private company-owned analytics firm. The Gallup world poll is funded by Gallup Inc.,
+        licensing and subsciption fees, and partner funded modules like Wellcome Global Monitor, Lloyd's Register Foundation, and the World Bank.
+      </p>
+      <p>
+        The data has 16 columns:
+        <ol>
+          <li>Year</li>
+          <li>Country</li>
+          <li>Continent/Region</li>
+          <li>Headline Consumer Price Inflation</li>
+          <li>Energy Consumer Price Inflation</li>
+          <li>Food Consumer Price Inflation</li>
+          <li>Official Core Consumer Price Inflation</li>
+          <li>Producer Price Inflation</li>
+          <li>GDP Deflator Index Growth Rate</li>
+          <li>Score (the dependent variable)</li>
+          <li>GDP per Capita</li>
+          <li>Social support</li>
+          <li>Healthy life expectancy at birth</li>
+          <li>Freedom to make life choices</li>
+          <li>Generosity</li>
+          <li>Perceptions of corruption</li>
+        </ol>
+      </p>
+      <p>
+        <b>Methodology of Data Collection</b>:  
+        According to <a href="https://www.gallup.com/178667/gallup-world-poll-work.aspx" target="_blank" class="GreenLink">Gallup</a>,
+        survey methods vary by country.  
+        - In countries with ≥80% telephone coverage, Gallup uses the random-digit-dial (RDD) method. Samples are purchased from regional providers
+        such as Sample Answers and Sample Solutions.  
+        - In countries with lower coverage, Gallup conducts face-to-face interviews using an area-frame design in randomly selected households.  
+        - The coverage area is the entire country, including rural regions, except in cases where interviewer safety is at risk or in sparsely populated
+        islands (specific countries not disclosed).  
+      </p>
 
-      <h3>So how do i interpret this whole thing?</h3>
       <p>
-        Score is the world happiness index and all the other loading vectors (arrows) represent their relationship to the score. A 0° angle means correlation, 90° means independence, 
-        180° means inverse correlation. So, we can say:
+        <b>Methodology of Data Collection</b>:  
+        According to <a href="https://www.gallup.com/178667/gallup-world-poll-work.aspx" target="_blank" class="GreenLink">Gallup</a>,
+        the way surveys are carried out depends on the country.  
       </p>
-      <ol>
+      <ul>
         <li>
-          Social support, GDP per capita and healthy life expectancy at birth are almost at the same angle. We can say that any 1 unit change of either three
-          contribute mostly the same unit of change to score.
+          If a country has strong phone coverage (at least 80%), Gallup goes with the random-digit-dial (RDD) method. The numbers themselves
+          come from regional sample providers such as Sample Answers and Sample Solutions.  
         </li>
-        <li> Generosity is almost perpendicular to Score. We can say that any 1 unit of change to generosity means very little change to score.</li>
-        <li> 
-          'Freedom to make life choices', and 'Perceptions of corruption' are 30 degrees and 45 degrees to Score, we can say that any 1 unit change to 
-          'Freedom to make life choices' changes scrore by 1/3 of a unit while a change to 'Perceptions of corruption' changes score by 1/2 a unit.
+        <li>
+          In countries where phone coverage isn’t as widespread, Gallup instead sends interviewers into randomly selected households, following an “area frame” design.  
         </li>
-      </ol>
-      <p> But wait - not only can we measure score against the other loading vectors, we can also measure loading vectors against other loading vectors! So,</p>
-      <ol>
-        <li> Generosity and Perceptions of corruption is mostly independent from Ss, GDPpC, and HLEaB - but not completely - which is pretty interesting.</li>
-        <li> Amusingly, the more Freedom to make life choices you have, the more Perceptions of corruption you also have. Quite frustrating for dictators.</li>
-      </ol>
-      <p> Furthermore, as a time-series visualization, we might be able to see the effects of global trends.</p>
-      <ol>
-        <li> The most obvious has to be the period between 2019 and 2021 - where the Sars-Coronavirus 2 pandemic lowered the global average score briefly.</li>
-      </ol>
-      
-      <h3>What is PCA?</h3>
+        <li>
+          The intended coverage is nationwide—including rural areas. The only exceptions are cases where it’s unsafe for interviewers, or in
+          very sparsely populated islands (Gallup doesn’t say exactly which countries this applies to).  
+        </li>
+      </ul>
+
       <p>
-        Principle Component Analysis (PCA) is a dimensional reduction technique. In my case, I want to visualize 7 different columns:
+        <b>Sampling Procedures</b>  
       </p>
-      <ol>
-        <li>Score</li>
-        <li>GDP per Capita</li>
-        <li>Social support</li>
-        <li>Healthy life expectancy at birth</li>
-        <li>Freedom to make life choices</li>
-        <li>Generosity</li>
-        <li>Perceptions of corruption</li>
-      </ol>
-      <p>Into 2 axes; so that I can do a 2-dimensional time-series visualization on it.</p>
-      <h3>What does PC1 and PC2 actually represent?</h3>
+
+      <p>
+        <u>Step 1 — Choosing the areas (PSUs):</u>  
+        For face-to-face surveys, Gallup first defines “primary sampling units” (PSUs), which are basically clusters of households.
+        These are stratified by population size and geography. When population counts are available, they use probabilities proportional to size;
+        otherwise, they fall back on simple random sampling.  
+        For phone surveys, it’s either RDD or a representative phone list. In places where cellphones are common, Gallup mixes landline and mobile samples.
+        Interviewers try each number at least three times.  
+      </p>
+
+      <p>
+        <u>Step 2 — Choosing the households:</u>  
+        Within each selected PSU, interviewers follow a random route to pick households. If no one answers or they get a refusal, they’ll try up
+        to three times at different times of day, and even different days. If there’s still no luck, they substitute with another household.  
+      </p>
+
+      <p>
+        <u>Step 3 — Choosing the respondents:</u>  
+        Once in a household, respondents are selected randomly using either the “latest birthday” method or a Kish grid. In some Middle Eastern and Asian countries,
+        interviews need to be gender-matched, so probability sampling is combined with quotas at this final stage.
+        Gallup also runs quality checks to make sure interviewers really are following the random selection rules.  
+      </p>
+
+
+      <p>Missing data type is probably Missing Not at Random (MNaR) but for the sake of analysis simplicity, I'll treat it as Missing at Random (MaR)</p>
+      <!------------------------------------------------------------------------------------>
+      <h3>Interpretation of plot</h3>
+        <p>
+          Score is the world happiness index and all the other loading vectors (arrows) represent their relationship to the score. A 0° angle means correlation,
+          90° means independence, 180° means inverse correlation. So, we can say:
+        </p>
+        <ul>
+          <li>
+            Social support, GDP per capita and healthy life expectancy at birth are almost at the same angle. We can say that any 1 unit change of either three
+            contribute mostly the same unit of change to score.
+          </li>
+          <li> Generosity is almost perpendicular to Score. We can say that any 1 unit of change to generosity means very little change to score.</li>
+          <li> 
+            'Freedom to make life choices', and 'Perceptions of corruption' are 30 degrees and 45 degrees to Score, we can say that any 1 unit change to 
+            'Freedom to make life choices' changes scrore by 1/3 of a unit while a change to 'Perceptions of corruption' changes score by 1/2 a unit.
+          </li>
+        </ul>
+        <p> But wait - not only can we measure score against the other loading vectors, we can also measure loading vectors against other loading vectors! So,</p>
+        <ul>
+          <li>
+            Generosity and Perceptions of corruption is mostly but not completely independent from GDP per capita, Social support, and Healthy life expectancy at birth
+            (GDPpc, SSupport, HLEatBirth) which is interesting; you'd think with more Generosity in a culture, Social Support will increase,
+            but this PCA disagrees. This PCA shows that cultural norms play very little impact to government policy.
+          </li>
+          <li>Amusingly, the more Freedom to make life choices you have, the more Perceptions of corruption you also have. Quite frustrating for dictators.</li>
+          <li>Interestingly, the PC2 component of GDP per capita, Social support, and Healthy life expectancy at birth is on the opposite direction of Generosity</li>
+        </ul>
+        <p> Furthermore, as a time-series visualization, we might be able to see the effects of global trends.</p>
+        <ul>
+          <li> The most obvious has to be the period between 2019 and 2021 - where the Sars-Coronavirus 2 pandemic lowered the global average score briefly.</li>
+        </ul>
+        <p>
+          I also wanted to do some sort of clustering analysis, and the simplest one I could think of that could handle numeric data was K-means. But I wanted
+          something more robust - Gaussian Mixture Models (GMM) does soft clustering on the assumption that each cluster have a Gaussian distribution (round shape).
+          GMM also consider covariance matrices, so we can have different ovals and size of clusters:
+        </p>
+        <ol class="cluster_list">
+          <li style="counter-set: step 2">
+            Starting with the cluster that has its centre (centroid) most left, we have medium to low GDPpc, SSupport, and HLEatBirth,
+            very low freedom to make life choices,and low perceptions of corruption. I would label this cluster as "underdeveloped countries"
+            - with a grain of salt; I wouldn't exactly place India in the same cluster as Sierra Leone and South Sudan -
+            This PCA only explains 67.1% variability after all.
+          </li>
+          <li style="counter-set: step 5">
+            Secondly, let's take a look at the cluster inhabiting the right, and lower-right corner. Scoring high on GDPpc, SSupport, and HLEatBirth,
+            the highest countries in freedom to make life choices and perceptions of corruption, with medium to high generosity, I would say these countries
+            are very stable, and safe. I would label this cluster as "developed countries".
+          </li>
+          <li style="counter-set: step 1">
+            A cluster inhabiting the middle-bottom corner of the graph. Happiness Score is middling, with the highest Generosity of all
+            clusters, high Perceptions of corruption, high freedom to make life choices, and middling GDPpc, SSupport, and HLEatBirth. We can
+            resonably call this cluster "developing countries".
+          </li>
+          <li style="counter-set: step 3">
+            Another cluster inhabiting the middle, but situated on the positive PC2 axis. This cluster exhibits much lower generosity,
+            perceptions of corruption, and freedom to make life choices. Conversely, better in GDPpc, SSupport, and HLEatBirth. I would label these
+            countries as another "developing countries". A richer but culturally worse than cluster 1.
+          </li>
+          <li style="counter-set: step 4">
+            Because GDPpc, SSupport, and HLEatBirth, and freedom to make life choices have a higher PC1 component than PC2, cluster 4 seems
+            to be an objectively worse cluster 5. Inhabiting the top right quadrant, it's also worse in generosity. I would label these countries as
+            "developed countries".
+          </li>
+        </ol>
+
+      <!------------------------------------------------------------------------------------>
+      <h3>What is PCA?</h3> 
+      <p>
+        Principle Component Analysis (PCA) is a dimensional reduction technique that tries to explain an
+        original dataset using a smaller dimension (the smaller, the better). With the tradeoff being
+        how representative this smaller dimension dataset captures the original - the % explained variance.
+        In my case I want to collapse the 7 columns to 2 axes; so that I can do a 2-dimensional time-series visualization on it.
+      </p>
+      <!------------------------------------------------------------------------------------>
+      <h3>'dimensional reduction'? 'explained variance'?</h3>
+      <div style="display: flex; gap: 10px;">
+        <img src="/media/portable_charger.jpg"
+             alt="portable handphone charger"
+             style="width:200px; height:auto;">
+        <p style="margin: 0; max-width: 500px;">
+          Imagine this portable charger is a dataset of 3 variables: length, width, and height.
+          I want to snap a photo of it (reduce it to 2-Dimensions), and I want as much of the portable charger's
+          length, width and height as possible inside the photo. Intuitively we can deduce that the longest line
+          could be from the bottom left corner to its lengthwise-opposite right top corner, making up the first axis.
+          The second axis is a line perpendicular to the first that also goes from bottom-top l/r corners, but this
+          time widthwise. However, does this photo explain the portable charger's L/W/H well? We can argue that since
+          the photo is orthogonal, it is hard to see the actual length because the axes 'squishes' the
+          length/width/height information into a composite vector made up of varying weights of length/width/height.
+          (If we normalize this vector we get an eigenvector)
+        </p>
+      </div>
+      <!------------------------------------------------------------------------------------>
+      <h3>Ok, so what does PC1 and PC2 actually represent?</h3>
       <p>
         We don't actually know what it represents. Maybe PC1 can reasonably be called 'Socioeconomic factors', because GDP per Capita,
         Social support, freedom to make life choices, and Healthy life expectancy at birth contributes quite a lot to PC1.
@@ -103,53 +258,40 @@
         <img src="/media/WHI_screeplot.png" 
              alt="Screeplot of PCA" 
              style="width: 600px; margin-right: 20px;">
-        <div>
-          <h3>'explained variance'?</h3>
-          <img src="/media/portable_charger.jpg"
-               alt="portable handphone charger"
-               style="width:200px">
-          <p>
-            Imagine this portable charger is a dataset of 3 variables: length, width, and height.
-            If I want to reduce it to 2-Dimensions (like taking a photo), PCA finds the best viewing angle (projection)
-            that captures as much of the charger's shape as possible. The projection is my first 2 principal components (PC).
-            The amount of detail preserved in the photo is the explained variance, spanned by the two PCs.
-          </p>
-        </div>
       </div>
+      <!------------------------------------------------------------------------------------>
       <h3>What is 'imputation'?</h3>
-        <p>
-          Imputation is the process of filling in missing values in the dataset with plausible estimates,
-          while preserving the original distribution of the data, avoid systemic bias, and maintain statistical validity.
-        </p>
-          <ol>
-            <li><span style="font-weight: bold;">linear regression (LR) imputation:</span>
-              There are several countries with missing values on one or two years.
-              I took the values of their other years, take a best fit LR line of those data,
-              and put in the intersection of the missing years and that best fit line's value + noise
-              into the data frame.
-            </li>
-            <li><span style="font-weight: bold;">predictive mean matching (PMM) imputation:</span>
-              There are several countries with missing values on most or all years.
-              I took the closest observed value of the mean of similar countries (from Regions/Continents column)
-              and put that in to the countries' respective year in the data frame.
-            </li>
-          </ol>
+      <p>
+        Imputation is the process of filling in missing values in the dataset with plausible estimates,
+        while preserving the original distribution of the data, avoid systemic bias, and maintain statistical validity.
+      </p>
+      <ol class="imputation">
+        <li class="LR">
+          There are several countries with missing values on one or two years.
+          I took the values of their other years, take a best fit LR line of those data,
+          and put in the intersection of the missing years and that best fit line's value + noise
+          into the data frame.
+        </li>
+        <li class="PMM">
+          There are several countries with missing values on most or all years.
+          I took the closest observed value of the mean of similar countries (from Regions/Continents column)
+          and put that in to the countries' respective year in the data frame.
+        </li>
+      </ol>
+      <!------------------------------------------------------------------------------------>
       <h3> Types of missing data</h3>
       <p> This is very important in how we choose which imputation methods to apply to missing values.</p>
-      <ol>
-        <li>
-          <b>Missing Completely at Random (MCaR)</b>:
+      <ol class="missing_data">
+        <li class="MCaR">
             The least constraining one. The probability of missingness is independent of both observed and unobserved data,
             so you can pretty much choose whichever imputation you deem best. How it happens: a lab technician accidentally
             loses some test tubes. Oops!
         </li>
-        <li>
-          <b>Missing at Random (MaR)</b>:
+        <li class="MaR">
             Missingness depends on observed data, the most common working assumption. Most imputation methods assume MAR.
             How it happens: survey responders who are ___ will be less likely to answer ___.  
         </li>
-        <li>
-          <b>Missing Not at Random (MNaR)</b>:
+        <li class="MNaR">
             The most constraining one. Missingness depends on the unobserved value itself, even after accounting for other variables.
             We would need some special imputation methods like selection models or sensitivity analysis. For example, rich people
             are less likely to report income.

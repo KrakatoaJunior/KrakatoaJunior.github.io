@@ -1,12 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: system-ui;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
 }
 header {
-    background-image: url('media/LandsEndSF_LakeChabot_LandsEndSF.jpg');
+    background-image: url('../media/LandsEndSF_LakeChabot_LandsEndSF.jpg');
     background-size: 100% 100%;
     background-position: 100% 100%;
     color: white;
@@ -207,8 +207,51 @@ footer {
   color:#000;
 }
 
+.cluster_list {
+    list-style: none;
+    counter-reset: step;
+    padding-left: 6.2em;
+}
+.cluster_list li {
+    counter-increment: step;
+}
+.cluster_list li::marker {
+    content: "Cluster " counter(step) ": ";
+    font-weight: bold; }
+
+.imputation {
+  list-style: none;
+  padding-left: 2.5em;
+}
+.imputation li.LR::before {
+  content: "linear regression (LR) imputation: ";
+  font-weight: bold;
+}
+.imputation li.PMM::before {
+  content: "predictive mean matching (PMM) imputation: ";
+  font-weight: bold;
+}
+
+.missing_data{
+    list-style: none;
+    padding-left: 2.5em;
+}
+.missing_data li.MCaR::before{
+    content: "Missing Completely at Random (MCaR):" ;
+    font-weight: bold;
+}
+.missing_data li.MaR::before{
+    content: "Missing at Random (MaR):";
+    font-weight: bold;
+}
+.missing_data li.MNaR::before{
+    content: "Missing Not at Random (MNaR):";
+    font-weight: bold;
+}
+
+
 /* respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce){
   .card__video{ display:none; }
-  .card{ background-image: url("media/whi_pca_gmm.jpg"); background-size: cover; background-position:center; }
+  .card{ background-image: url("../media/whi_pca_gmm.jpg"); background-size: cover; background-position:center; }
 }

@@ -1,0 +1,65 @@
+[
+  {
+    "PC1": 0.8213,
+    "PC2": 0.2615,
+    "Variable": "GDP per Capita",
+    "mag": 0.8619,
+    "xend": 2.4316,
+    "yend": 0.7742,
+    "_row": "GDP per Capita"
+  },
+  {
+    "PC1": 0.7517,
+    "PC2": 0.2428,
+    "Variable": "Social support",
+    "mag": 0.79,
+    "xend": 2.2258,
+    "yend": 0.7188,
+    "_row": "Social support"
+  },
+  {
+    "PC1": 0.7749,
+    "PC2": 0.2229,
+    "Variable": "Healthy life expectancy at birth",
+    "mag": 0.8063,
+    "xend": 2.2943,
+    "yend": 0.66,
+    "_row": "Healthy life expectancy at birth"
+  },
+  {
+    "PC1": 0.6813,
+    "PC2": -0.3374,
+    "Variable": "Freedom to make life choices",
+    "mag": 0.7603,
+    "xend": 2.0174,
+    "yend": -0.9989,
+    "_row": "Freedom to make life choices"
+  },
+  {
+    "PC1": 0.0913,
+    "PC2": -0.8075,
+    "Variable": "Generosity",
+    "mag": 0.8126,
+    "xend": 0.2705,
+    "yend": -2.3908,
+    "_row": "Generosity"
+  },
+  {
+    "PC1": 0.5203,
+    "PC2": -0.5579,
+    "Variable": "Perceptions of corruption",
+    "mag": 0.7629,
+    "xend": 1.5406,
+    "yend": -1.6518,
+    "_row": "Perceptions of corruption"
+  },
+  {
+    "PC1": 0.9284,
+    "PC2": 0.0258,
+    "Variable": "Score",
+    "mag": 0.9287,
+    "xend": 2.7488,
+    "yend": 0.0764,
+    "_row": "Score"
+  }
+]
