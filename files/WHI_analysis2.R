@@ -18,14 +18,59 @@ library(scales)
 library(stringr)
 library(tibble)
 library(tidyr)
+library(jsonlite)
 
 set.seed(500)
 
 ### load data
 df <- read_csv("WHI_Inflation.csv")
 
-# Checking manually leads to the knowledge that Cyprus has 2 rows with repeated years,
-# Choose the rows that are more consistent
+# checking with 2 keys
+n_occur <- data.frame(table(df$Country, df$Year))
+
+# which unique combination have duplicates
+n_occur[n_occur$Freq > 1,] 
+
+# bring up those entries in the df
+df_dupes <- df[df$Country %in% n_occur$Var1[n_occur$Freq > 1] & df$Year %in% n_occur$Var2[n_occur$Freq > 1],]
+show(df_dupes)
+#View(df_dupes)
+#toJSON(setNames(as.data.frame(df_dupes),colnames(df_dupes)))
+
+# Putting the mismatches side by side
+# flag number of distinct values per group for each column
+var_flags <- df_dupes %>%
+  group_by(Country, Year) %>%
+  summarise(across(everything(), ~ n_distinct(.x)), .groups = "drop")
+
+# columns that vary in at least one group
+cols_to_keep <- var_flags %>%
+  summarise(across(everything(), ~ any(. > 1))) %>%
+  pivot_longer(everything(), names_to = "col", values_to = "varies") %>%
+  filter(varies) %>%
+  pull(col)
+
+# filter original data to keep only keys + mismatched columns
+df_dupes_mismatch <- df_dupes %>%
+  dplyr::select(all_of(cols_to_keep))
+#View(df_dupes_mismatch)
+#toJSON(setNames(as.data.frame(df_dupes_mismatch),colnames(df_dupes_mismatch)))
+
+cols_to_keep_depvars <- setdiff(cols_to_keep, c("Country", "Year"))
+
+# Loop through each variable and plot
+for (var in cols_to_keep_depvars) {
+  cyprus <- df %>% filter(Country == "Cyprus")
+  
+  p <- ggplot(cyprus, aes(x = Year, y = .data[[var]])) +
+    geom_point(color="green" +
+    scale_x_continuous(breaks = seq(min(cyprus$Year), max(cyprus$Year), by = 1)) +
+    labs(title = paste("Cyprus:", var), y = var)
+  
+  print(p)   # important in loops to display plots
+}
+
+# Choose the rows that are more consistent with the rest of its country's other years
 df <- df[-285,]
 df <- df[-287,]
 

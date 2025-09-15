@@ -1,0 +1,47 @@
+.table-wrap {
+  overflow-x: auto;             /* horizontal scroll */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0;                   /* optional */
+  margin: 24px 0;               /* space around the widget */
+}
+
+/* optional local heading just above the table */
+.table-wrap .title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+}
+
+.table-wrap table {
+  border-collapse: collapse;
+  width: 100%;           /* expand to fit columns */
+  white-space: nowrap;          /* keep cells on one line */
+  font-size: 13px;
+}
+
+.table-wrap thead th {
+  position: sticky;
+  top: 0;
+  background: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: left;
+  padding: 8px 10px;
+  font-weight: 600;
+}
+
+.table-wrap tbody td {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 6px 10px;
+}
+
+.table-wrap tbody tr:hover td {
+  background: #fffdf3;          /* subtle hover */
+}
+
+.table-wrap .muted {
+  color: #666;
+  font-size: 12px;
+  margin: 8px 0 14px;
+}
