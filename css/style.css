@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
-    color: #333;
+    color: #222;
 }
 header {
     background-image: url('../media/LandsEndSF_LakeChabot_LandsEndSF.jpg');
@@ -249,9 +249,12 @@ footer {
     font-weight: bold;
 }
 
-
-/* respect users who prefer less motion */
-@media (prefers-reduced-motion: reduce){
-  .card__video{ display:none; }
-  .card{ background-image: url("../media/whi_pca_gmm.jpg"); background-size: cover; background-position:center; }
+#plot {
+  width: 100%;
+  max-width: 1100px;
+  height: 640px;
+  margin: 24px auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
 }

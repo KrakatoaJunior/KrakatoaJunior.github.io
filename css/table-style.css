@@ -1,47 +1,87 @@
+/* Container scroll area */
 .table-wrap {
-  overflow-x: auto;             /* horizontal scroll */
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0;                   /* optional */
-  margin: 24px 0;               /* space around the widget */
+  --col1: 180px;  /* default safe guesses; JS will update after render */
+  --col2: 50px;  /* width of the 2nd column (used for layout, not sticky) */
+  --border: #e5e7eb;
+  --head-bg: #f8fafc;
+  --col-bg:  #ffffff;
+  --col-sticky-bg: #ffffff;
+  --z-head:  3;
+  --z-col:   2;
+  --z-corner: 4;
+
+  max-height: 60vh;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
-/* optional local heading just above the table */
-.table-wrap .title {
-  margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: 600;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+/* Table baseline */
+.freeze2 {
+  border-collapse: separate; /* needed for sticky to show borders nicely */
+  border-spacing: 0;
+  table-layout: fixed;       /* prevents width creep on long content */
+  width: max-content;        /* so horizontal scroll appears when needed */
+  min-width: 100%;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #0f172a;
 }
 
-.table-wrap table {
-  border-collapse: collapse;
-  width: 100%;           /* expand to fit columns */
-  white-space: nowrap;          /* keep cells on one line */
-  font-size: 13px;
+/* Cells */
+.freeze2 th,
+.freeze2 td {
+  padding: 3px 10px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: var(--col-bg);
+  vertical-align: top;
+
+  /* Prevent endless growth from long tokens; show ellipsis */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.table-wrap thead th {
+/* First column left border */
+.freeze2 tr > *:first-child {
+  border-left: 1px solid var(--border);
+}
+
+/* Header row sticks on vertical scroll */
+.freeze2 thead th {
   position: sticky;
   top: 0;
-  background: #fafafa;
-  border-bottom: 1px solid #e5e5e5;
-  text-align: left;
-  padding: 8px 10px;
+  background: var(--head-bg);
+  z-index: var(--z-head);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
   font-weight: 600;
 }
 
-.table-wrap tbody td {
-  border-bottom: 1px solid #f0f0f0;
-  padding: 6px 10px;
+/* Sticky first two columns (both header and body cells) */
+.freeze2 .sticky-col-1,
+.freeze2 .sticky-col-2 {
+  position: sticky;
+  background: var(--col-sticky-bg);
+  z-index: var(--z-col);
 }
 
-.table-wrap tbody tr:hover td {
-  background: #fffdf3;          /* subtle hover */
+/* Offsets for the two sticky columns */
+.freeze2 .sticky-col-1 { left: 0; }
+.freeze2 .sticky-col-2 { left: var(--col1); }
+
+/* Ensure header cells at the corners sit above everything */
+.freeze2 thead .sticky-col-1,
+.freeze2 thead .sticky-col-2 {
+  z-index: var(--z-corner);
 }
 
-.table-wrap .muted {
-  color: #666;
-  font-size: 12px;
-  margin: 8px 0 14px;
+/* Optional: set base widths so the layout is stable before JS measures */
+.freeze2 col.col-1 { width: var(--col1); }
+.freeze2 col.col-2 { width: var(--col2); }
+
+/* Nice hover */
+.freeze2 tbody tr:hover td {
+  background: #f9fafb;
 }
